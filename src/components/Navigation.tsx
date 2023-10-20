@@ -14,7 +14,7 @@ export default function Navigation() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         { currentUser === null ? (
           <Stack.Screen name="login" component={LoginScreen} />
         ): (
