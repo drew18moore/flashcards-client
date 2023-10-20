@@ -1,6 +1,8 @@
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { useLoginMutation } from "../store/features/auth/authApiSlice";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../store/features/auth/authSlice";
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
@@ -8,6 +10,7 @@ export default function LoginScreen() {
   const [error, setError] = useState('');
 
   const [login] = useLoginMutation();
+  const dispatch = useDispatch();
 
   const onLogin = async () => {
     console.log(username, password);
@@ -15,7 +18,7 @@ export default function LoginScreen() {
 
     try {
       const res = await login({ username: formattedUsername, password }).unwrap()
-      
+      dispatch(setCredentials({ user: res.userDTO, token: res.token }))
       setUsername("");
       setPassword("");
       console.log(res);
