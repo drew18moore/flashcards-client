@@ -1,16 +1,14 @@
-import { View, Text, SafeAreaView } from 'react-native'
+import { Text, SafeAreaView } from 'react-native'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectCurrentToken, selectCurrentUser } from '../store/features/auth/authSlice';
+import { selectAllDecks } from '../store/features/deck/deckSlice';
 
 export default function HomeScreen() {
-  const user = useSelector(selectCurrentUser);
-  const token = useSelector(selectCurrentToken);
-  
+  const decks = useSelector(selectAllDecks);
+
   return (
     <SafeAreaView>
-      <Text>{JSON.stringify(user)}</Text>
-      <Text>{JSON.stringify(token)}</Text>
+      <Text>{JSON.stringify(decks)}</Text>
     </SafeAreaView>
   )
 }
