@@ -1,11 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../..";
+import { apiSlice } from "../../api/apiSlice";
 
-export const deckSlice = createSlice({
-  name: "deck",
-  initialState: { decks: null },
-  reducers: {},
+export const deckApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getAllDecks: builder.query<Deck[], void>({
+      query: () => "/deck",
+      providesTags: (result) =>
+        result
+          ? [
+              { type: "Deck", id: "LIST" },
+              ...result.map(({ id }) => ({
+                type: "Deck" as const,
+                id,
+              })),
+            ]
+          : [{ type: "Deck", id: "LIST" }],
+    }),
+  }),
 });
 
-export const selectAllDecks = (state: RootState) => state.deck.decks;
-export default deckSlice.reducer;
+export const { useGetAllDecksQuery } = deckApiSlice;

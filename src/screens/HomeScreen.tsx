@@ -1,14 +1,13 @@
 import { Text, SafeAreaView } from 'react-native'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectAllDecks } from '../store/features/deck/deckSlice';
+import { useGetAllDecksQuery } from '../store/features/deck/deckSlice';
 
 export default function HomeScreen() {
-  const decks = useSelector(selectAllDecks);
+  const { data } = useGetAllDecksQuery();
 
   return (
     <SafeAreaView>
-      <Text>{JSON.stringify(decks)}</Text>
+      <Text>{JSON.stringify(data)}</Text>
     </SafeAreaView>
   )
 }
