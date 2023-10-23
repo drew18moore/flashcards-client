@@ -1,13 +1,14 @@
-import { StatusBar } from "expo-status-bar";
-import { Text, View } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./src/store";
 import Navigation from "./src/components/Navigation";
+import PersistLogin from "./src/contexts/PersistLogin";
 
 export default function App() {
   return (
     <Provider store={store}>
-      <Navigation />
+      <PersistLogin>
+        <Navigation />
+      </PersistLogin>
     </Provider>
   );
 }
