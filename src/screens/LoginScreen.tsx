@@ -4,6 +4,8 @@ import { useLoginMutation } from "../store/features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../store/features/auth/authSlice";
 import * as SecureStore from "expo-secure-store";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 export default function LoginScreen() {
   const [username, setUsername] = useState('');
@@ -12,6 +14,9 @@ export default function LoginScreen() {
 
   const [login] = useLoginMutation();
   const dispatch = useDispatch();
+
+  const navigation = useNavigation();
+
 
   const onLogin = async () => {
     console.log(username, password);
@@ -36,6 +41,7 @@ export default function LoginScreen() {
 
   return (
     <SafeAreaView>
+      <TouchableOpacity onPress={() => navigation.goBack()} className="self-start mx-3 p-2"><MaterialCommunityIcons name="arrow-left" size={25} /></TouchableOpacity>
       <View className="mx-5 space-y-2 mt-20">
         <Text>LOG IN WITH YOUR USERNAME</Text>
         {error && <Text className="bg-red-200 text-red-600 self-center px-2 py-1 overflow-hidden" style={{ borderRadius: 6 }}>{error}</Text>}
