@@ -66,24 +66,26 @@ export default function LoginScreen() {
           </Text>
         )}
         <View className="space-y-2">
-          <View>
+          <View className="space-y-2">
             <Text className="text-lg font-bold">USERNAME</Text>
             <TextInput
+              style={{ fontSize: 18 }}
               autoCapitalize="none"
               onChangeText={(text) => setUsername(text)}
               value={username}
               placeholder="Enter your username"
-              className="text-lg py-1 px-2 border-b-2 focus:border-b-blue-600"
+              className="py-1 px-2 border-b-2 focus:border-b-blue-600"
             />
           </View>
-          <View>
+          <View className="space-y-2">
             <Text className="text-lg font-bold">PASSWORD</Text>
             <TextInput
+              style={{ fontSize: 18 }}
               autoCapitalize="none"
               onChangeText={(text) => setPassword(text)}
               value={password}
               placeholder="Enter your password"
-              className="text-lg py-1 px-2 border-b-2 focus:border-b-blue-600"
+              className="py-1 px-2 border-b-2 focus:border-b-blue-600"
             />
           </View>
           <TouchableOpacity

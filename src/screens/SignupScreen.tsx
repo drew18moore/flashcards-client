@@ -27,33 +27,36 @@ const SignupScreen = () => {
       <View className="mx-5 space-y-2 mt-20">
         <Text>SIGN UP WITH A USERNAME</Text>
         <View className="space-y-2">
-          <View>
+          <View className="space-y-2">
             <Text className="text-lg font-bold">USERNAME</Text>
             <TextInput
+              style={{ fontSize: 18 }}
               value={username}
               onChangeText={(text) => setUsername(text)}
               autoCapitalize="none"
               placeholder="Enter a username"
-              className="text-lg py-1 px-2 border-b-2 focus:border-b-blue-600"
+              className="py-1 px-2 border-b-2 focus:border-b-blue-600"
             />
           </View>
-          <View>
+          <View className="space-y-2">
             <Text className="text-lg font-bold">PASSWORD</Text>
             <TextInput
+              style={{ fontSize: 18 }}
               value={password}
               onChangeText={(text) => setPassword(text)}
               placeholder="Enter a password"
-              className="text-lg py-1 px-2 border-b-2 focus:border-b-blue-600"
+              className="py-1 px-2 border-b-2 focus:border-b-blue-600"
             />
           </View>
-          <View>
+          <View className="space-y-2">
             <Text className="text-lg font-bold">CONFIRM PASSWORD</Text>
             <TextInput
+              style={{ fontSize: 18 }}
               value={confirmPassword}
               onChangeText={(text) => setConfirmPassword(text)}
               autoCapitalize="none"
               placeholder="Confirm your password"
-              className="text-lg py-1 px-2 border-b-2 focus:border-b-blue-600"
+              className="py-1 px-2 border-b-2 focus:border-b-blue-600"
             />
           </View>
           <TouchableOpacity onPress={onSignup} className="bg-blue-600 p-3 items-center rounded-md">
