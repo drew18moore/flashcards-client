@@ -83,6 +83,7 @@ const SignupScreen = () => {
               onChangeText={(text) => setPassword(text)}
               placeholder="Enter a password"
               className="py-1 px-2 border-b-2 focus:border-b-blue-600"
+              secureTextEntry
             />
           </View>
           <View className="space-y-2">
@@ -94,6 +95,7 @@ const SignupScreen = () => {
               autoCapitalize="none"
               placeholder="Confirm your password"
               className="py-1 px-2 border-b-2 focus:border-b-blue-600"
+              secureTextEntry
             />
           </View>
           <TouchableOpacity

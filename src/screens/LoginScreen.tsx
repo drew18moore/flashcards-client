@@ -86,6 +86,7 @@ export default function LoginScreen() {
               value={password}
               placeholder="Enter your password"
               className="py-1 px-2 border-b-2 focus:border-b-blue-600"
+              secureTextEntry
             />
           </View>
           <TouchableOpacity
