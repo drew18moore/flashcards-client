@@ -1,22 +1,28 @@
 type User = {
-  id: number,
-  username: string
-}
+  id: number;
+  username: string;
+};
 
 type Deck = {
-  id: number,
-  userId: number,
-  name: string,
-  isPrivate: boolean,
-  createdAt: Date
-}
+  id: number;
+  userId: number;
+  name: string;
+  isPrivate: boolean;
+  createdAt: Date;
+};
 
 type AuthResponse = {
-  token: string,
-  userDTO: User
-}
+  token: string;
+  userDTO: User;
+};
 
 type LoginRequest = {
-  username: string,
-  password: string
-}
+  username: string;
+  password: string;
+};
+
+type SignupRequest = {
+  username: string;
+  password: string;
+  confirmPassword: string;
+};
