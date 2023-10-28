@@ -20,7 +20,7 @@ export default function HomeScreen() {
       <Button title='logout' onPress={onLogout} />
       <ScrollView className="h-full px-4" contentContainerStyle={{ rowGap: 5, paddingBottom: 60}}>
         {decks?.map(deck => (
-          <Deck key={deck.id} id={deck.id} userId={deck.userId} name={deck.name} isPrivate={deck.isPrivate} createdAt={deck.createdAt} />
+          <Deck key={deck.id} id={deck.id} userId={deck.userId} name={deck.name} isPrivate={deck.isPrivate} createdAt={deck.createdAt} numCards={deck.numCards} />
         ))}
       </ScrollView>
     </SafeAreaView>

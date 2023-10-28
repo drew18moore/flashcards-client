@@ -9,6 +9,7 @@ type Deck = {
   name: string;
   isPrivate: boolean;
   createdAt: Date;
+  numCards: number;
 };
 
 type AuthResponse = {
