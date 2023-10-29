@@ -1,6 +1,8 @@
 type User = {
   id: number;
+  displayName: string;
   username: string;
+  createdAt: Date;
 };
 
 type Deck = {
@@ -23,6 +25,7 @@ type LoginRequest = {
 };
 
 type SignupRequest = {
+  displayName: string;
   username: string;
   password: string;
   confirmPassword: string;

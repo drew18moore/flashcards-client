@@ -10,6 +10,7 @@ import { setCredentials } from "../store/features/auth/authSlice";
 import * as SecureStore from "expo-secure-store";
 
 const SignupScreen = () => {
+  const [displayName, setDisplayName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -23,9 +24,11 @@ const SignupScreen = () => {
   const onSignup = async () => {
     console.log(username, password, confirmPassword);
     const formattedUsername = username.toLowerCase().trim();
+    const formattedDisplayName = displayName.trim();
 
     try {
       const res = await signup({
+        displayName: formattedDisplayName,
         username: formattedUsername,
         password,
         confirmPassword,
@@ -34,6 +37,7 @@ const SignupScreen = () => {
 
       await SecureStore.setItemAsync("flashcards-jwt", res.token);
 
+      setDisplayName("");
       setUsername("");
       setPassword("");
     } catch (err: any) {
@@ -64,6 +68,17 @@ const SignupScreen = () => {
           </Text>
         )}
         <View className="space-y-2">
+          <View className="space-y-2">
+            <Text className="text-lg font-bold">DISPLAY NAME</Text>
+            <TextInput
+              style={{ fontSize: 18 }}
+              value={displayName}
+              onChangeText={(text) => setDisplayName(text)}
+              autoCapitalize="none"
+              placeholder="Enter a display name"
+              className="py-1 px-2 border-b-2 focus:border-b-blue-600"
+            />
+          </View>
           <View className="space-y-2">
             <Text className="text-lg font-bold">USERNAME</Text>
             <TextInput

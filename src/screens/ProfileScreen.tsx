@@ -10,9 +10,10 @@ const ProfileScreen = () => {
     <SafeAreaView>
       <View className="px-4">
         <View className="space-y-2">
-          <Text className="font-bold text-xl">Drew</Text>
+          <Text className="font-bold text-xl">{user?.displayName}</Text>
           <Text>{user?.username}</Text>
           <Text>Joined October 2023</Text>
+          <Text>{JSON.stringify(user?.createdAt)}</Text>
         </View>
       </View>
     </SafeAreaView>
