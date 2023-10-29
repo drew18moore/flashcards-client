@@ -6,7 +6,7 @@ import { logout } from '../store/features/auth/authSlice';
 import Deck from '../store/features/deck/Deck';
 import * as SecureStorage from "expo-secure-store";
 
-export default function HomeScreen() {
+export default function DecksScreen() {
   const { data: decks } = useGetAllDecksQuery();
   const dispatch = useDispatch();
 

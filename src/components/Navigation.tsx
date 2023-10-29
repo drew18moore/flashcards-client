@@ -1,12 +1,13 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "../screens/HomeScreen";
+import HomeScreen from "../screens/DecksScreen";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "../store/features/auth/authSlice";
 import LoginScreen from "../screens/LoginScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import SignupScreen from "../screens/SignupScreen";
+import MainScreen from "../screens/MainScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +24,7 @@ export default function Navigation() {
             <Stack.Screen name="signup" component={SignupScreen} />
           </Stack.Group>
         ) : (
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="main" component={MainScreen} />
         )}
       </Stack.Navigator>
     </NavigationContainer>
