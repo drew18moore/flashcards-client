@@ -1,18 +1,15 @@
 import { ReactNode, useEffect } from "react";
-import { useGetUserFromTokenQuery } from "../store/features/auth/authApiSlice";
 import * as SecureStorage from "expo-secure-store";
-import {
-  selectCurrentToken,
-  setToken,
-  setUser,
-} from "../store/features/auth/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { setToken, setUser } from "../store/features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { Platform } from "react-native";
 
 export default function PersistLogin({ children }: { children: ReactNode }) {
-  const token = useSelector(selectCurrentToken);
-  const { data, isSuccess, isError, error } = useGetUserFromTokenQuery(undefined, {
-    skip: !token,
-  });
+  const BASE_URL =
+    Platform.OS === "android"
+      ? process.env.EXPO_PUBLIC_BASE_URL_ANDROID
+      : process.env.EXPO_PUBLIC_BASE_URL;
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,6 +18,16 @@ export default function PersistLogin({ children }: { children: ReactNode }) {
         const token = await SecureStorage.getItemAsync("flashcards-jwt");
         if (token) {
           dispatch(setToken(token));
+          const res = await fetch(`${BASE_URL}/auth/persist`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (res.ok) {
+            const data = await res.json();
+            dispatch(setUser(data.userDTO));
+          }
         }
       } catch (err) {
         console.error(err);
@@ -28,28 +35,6 @@ export default function PersistLogin({ children }: { children: ReactNode }) {
     };
     retrieveToken();
   }, []);
-
-  useEffect(() => {
-    if (isSuccess) {
-      dispatch(setUser(data.userDTO));
-    }
-  }, [isSuccess, data]);
-
-  useEffect(() => {
-    const removeToken = async () => {
-      try {
-        await SecureStorage.deleteItemAsync("flashcards-jwt");
-        dispatch(setToken(null));
-        dispatch(setUser(null));
-      } catch (err) {
-        console.error(err)
-      }
-    }
-    
-    if (error && "status" in error && error.status === 500) {
-      removeToken();
-    }
-  }, [isError])
 
   return children;
 }

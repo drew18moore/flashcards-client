@@ -16,11 +16,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
     }),
-    getUserFromToken: builder.query<AuthResponse, any>({
-      query: () => "/auth/persist",
-    }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation, useGetUserFromTokenQuery } =
-  authApiSlice;
+export const { useLoginMutation, useSignupMutation } = authApiSlice;
