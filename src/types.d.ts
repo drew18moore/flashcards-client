@@ -2,7 +2,7 @@ type User = {
   id: number;
   displayName: string;
   username: string;
-  createdAt: Date;
+  createdAt: string;
 };
 
 type Deck = {
@@ -10,7 +10,7 @@ type Deck = {
   userId: number;
   name: string;
   isPrivate: boolean;
-  createdAt: Date;
+  createdAt: string;
   numCards: number;
 };
 
