@@ -1,7 +1,10 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../store/features/auth/authSlice";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const ProfileScreen = () => {
   const user = useSelector(selectCurrentUser);
@@ -10,13 +13,21 @@ const ProfileScreen = () => {
     month: "long",
     year: "numeric",
   });
+
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
   return (
     <SafeAreaView>
-      <View className="px-4">
-        <View className="space-y-2">
+      <View className="px-4 flex-row">
+        <View className="space-y-2 flex-1">
           <Text className="font-bold text-xl">{user?.displayName}</Text>
           <Text>{user?.username}</Text>
           <Text>Joined {formattedDate}</Text>
+        </View>
+        <View>
+          <TouchableOpacity className="p-1 m-1" onPress={() => navigation.navigate("settings")}>
+            <MaterialCommunityIcons name="cog-outline" size={30} />
+          </TouchableOpacity>
         </View>
       </View>
     </SafeAreaView>
