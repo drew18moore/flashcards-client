@@ -3,15 +3,23 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
-import { useSelector } from "react-redux";
-import { selectCurrentUser } from "../store/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectCurrentUser } from "../store/features/auth/authSlice";
+import * as SecureStorage from "expo-secure-store";
 
 const SettingsScreen = () => {
   const user = useSelector(selectCurrentUser);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [username, setUsername] = useState(user?.username || "");
+
+
+  const onLogout = async () => {
+    dispatch(logout());
+    await SecureStorage.deleteItemAsync("flashcards-jwt");
+  }
 
   return (
     <SafeAreaView>
@@ -51,6 +59,9 @@ const SettingsScreen = () => {
           />
         </View>
       </View>
+      <TouchableOpacity className="mx-5 p-2 items-center border rounded-md" onPress={onLogout}>
+        <Text className="font-bold p-1 text-blue-600">LOG OUT</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
