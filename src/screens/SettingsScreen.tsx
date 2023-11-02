@@ -4,22 +4,41 @@ import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { logout, selectCurrentUser } from "../store/features/auth/authSlice";
+import { logout, selectCurrentUser, setUser } from "../store/features/auth/authSlice";
 import * as SecureStorage from "expo-secure-store";
+import { useEditUserMutation } from "../store/features/user/userApiSlice";
 
 const SettingsScreen = () => {
   const user = useSelector(selectCurrentUser);
   const navigation = useNavigation();
   const dispatch = useDispatch();
+  const [editUser] = useEditUserMutation();
 
   const [displayName, setDisplayName] = useState(user?.displayName || "");
   const [username, setUsername] = useState(user?.username || "");
 
-
   const onLogout = async () => {
     dispatch(logout());
     await SecureStorage.deleteItemAsync("flashcards-jwt");
-  }
+  };
+
+  const saveProfile = async () => {
+    console.log(displayName, username);
+
+    const formattedDisplayName = displayName.trim();
+    const formattedUsername = username.toLowerCase().trim();
+
+    try {
+      const res = await editUser({
+        userId: user!.id,
+        displayName: formattedDisplayName,
+        username: formattedUsername,
+      }).unwrap();
+      dispatch(setUser(res));
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <SafeAreaView>
@@ -32,7 +51,9 @@ const SettingsScreen = () => {
         </TouchableOpacity>
         <Text className="font-bold text-center p-3">Settings</Text>
         <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
-          <Text className="font-bold p-1 text-blue-600">SAVE</Text>
+          <Text onPress={saveProfile} className="font-bold p-1 text-blue-600">
+            SAVE
+          </Text>
         </TouchableOpacity>
       </View>
       <View className="p-5 space-y-2">
@@ -59,7 +80,10 @@ const SettingsScreen = () => {
           />
         </View>
       </View>
-      <TouchableOpacity className="mx-5 p-2 items-center border rounded-md" onPress={onLogout}>
+      <TouchableOpacity
+        className="mx-5 p-2 items-center border rounded-md"
+        onPress={onLogout}
+      >
         <Text className="font-bold p-1 text-blue-600">LOG OUT</Text>
       </TouchableOpacity>
     </SafeAreaView>

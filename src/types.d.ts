@@ -30,3 +30,9 @@ type SignupRequest = {
   password: string;
   confirmPassword: string;
 };
+
+type EditUserRequest = {
+  userId: number;
+  displayName: string;
+  username: string;
+}
