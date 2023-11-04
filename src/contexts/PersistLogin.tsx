@@ -27,6 +27,10 @@ export default function PersistLogin({ children }: { children: ReactNode }) {
           if (res.ok) {
             const data = await res.json();
             dispatch(setUser(data.userDTO));
+          } else {
+            SecureStorage.deleteItemAsync("flashcards-jwt");
+            setUser(null);
+            setToken(null);
           }
         }
       } catch (err) {
