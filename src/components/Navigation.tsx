@@ -1,7 +1,6 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import HomeScreen from "../screens/DecksScreen";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "../store/features/auth/authSlice";
 import LoginScreen from "../screens/LoginScreen";
@@ -9,6 +8,7 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import SignupScreen from "../screens/SignupScreen";
 import MainScreen from "../screens/MainScreen";
 import SettingsScreen from "../screens/SettingsScreen";
+import NewDeckScreen from "../screens/NewDeckScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +31,7 @@ export default function Navigation() {
               name="settings"
               component={SettingsScreen}
             />
+            <Stack.Screen name="new-deck" component={NewDeckScreen} />
           </Stack.Group>
         )}
       </Stack.Navigator>
