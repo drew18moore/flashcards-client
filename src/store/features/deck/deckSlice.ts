@@ -15,7 +15,15 @@ export const deckApiSlice = apiSlice.injectEndpoints({
             ]
           : [{ type: "Deck", id: "LIST" }],
     }),
+    newDeck: builder.mutation<Deck, NewDeckRequest>({
+      query: (credentials) => ({
+        url: "/deck",
+        method: "POST",
+        body: { ...credentials },
+      }),
+      invalidatesTags: [{ type: "Deck", id: "LIST" }]
+    }),
   }),
 });
 
-export const { useGetAllDecksQuery } = deckApiSlice;
+export const { useGetAllDecksQuery, useNewDeckMutation } = deckApiSlice;

@@ -9,12 +9,21 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
+import { useNewDeckMutation } from "../store/features/deck/deckSlice";
 
 const NewDeckScreen = () => {
   const [name, setName] = useState("");
   const [isPrivate, setIsPrivate] = useState(true);
 
   const navigation = useNavigation();
+  const [newDeck] = useNewDeckMutation();
+
+  const onSubmit = () => {
+    console.log(name, isPrivate);
+    newDeck({ name, isPrivate });
+    navigation.goBack();
+  };
+
   return (
     <SafeAreaView>
       <View>
@@ -25,8 +34,16 @@ const NewDeckScreen = () => {
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
         <Text className="font-bold text-center p-3">New Deck</Text>
-        <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
-          <MaterialCommunityIcons name="check" size={25} color="#2563EB" />
+        <TouchableOpacity
+          onPress={onSubmit}
+          disabled={name.trim() === ""}
+          className="self-start mx-2 p-2 absolute z-10 right-0"
+        >
+          <MaterialCommunityIcons
+            name="check"
+            size={25}
+            color={name.trim() === "" ? "gray" : "#2563EB"}
+          />
         </TouchableOpacity>
       </View>
       <View className="p-5 space-y-4">

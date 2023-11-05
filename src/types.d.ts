@@ -36,3 +36,8 @@ type EditUserRequest = {
   displayName: string;
   username: string;
 }
+
+type NewDeckRequest = {
+  name: string;
+  isPrivate: boolean;
+}
