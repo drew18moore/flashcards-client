@@ -9,6 +9,7 @@ import SignupScreen from "../screens/SignupScreen";
 import MainScreen from "../screens/MainScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import NewDeckScreen from "../screens/NewDeckScreen";
+import DeckScreen from "../screens/DeckScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ export default function Navigation() {
               component={SettingsScreen}
             />
             <Stack.Screen name="new-deck" component={NewDeckScreen} />
+            <Stack.Screen name="deck" component={DeckScreen} />
           </Stack.Group>
         )}
       </Stack.Navigator>
