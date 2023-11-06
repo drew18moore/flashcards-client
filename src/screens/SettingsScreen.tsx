@@ -64,7 +64,7 @@ const SettingsScreen = () => {
             onChangeText={(text) => setDisplayName(text)}
             value={displayName}
             autoCapitalize="none"
-            placeholder="Enter your username"
+            placeholder="Enter a display name"
             className="py-1 px-2 border-b-2 focus:border-b-blue-600"
           />
         </View>
@@ -75,7 +75,7 @@ const SettingsScreen = () => {
             onChangeText={(text) => setUsername(text)}
             value={username}
             autoCapitalize="none"
-            placeholder="Enter your username"
+            placeholder="Enter a username"
             className="py-1 px-2 border-b-2 focus:border-b-blue-600"
           />
         </View>
