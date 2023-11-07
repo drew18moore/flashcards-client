@@ -14,13 +14,24 @@ const DeckScreen = () => {
   const navigation = useNavigation();
   return (
     <SafeAreaView>
-      <TouchableOpacity
-        onPress={() => navigation.goBack()}
-        className="self-start mx-3 p-2"
-      >
-        <MaterialCommunityIcons name="arrow-left" size={25} />
-      </TouchableOpacity>
-      <Text>{id}</Text>
+      <View className="flex-row justify-between">
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          className="self-start mx-3 p-2"
+        >
+          <MaterialCommunityIcons name="arrow-left" size={25} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          className="self-start mx-3 p-2"
+        >
+          <MaterialCommunityIcons name="dots-vertical" size={25} />
+        </TouchableOpacity>
+      </View>
+
+      <View className="mx-6 mt-2">
+        <Text className="text-lg font-bold">{deck?.name}</Text>
+        <Text className="">{deck?.numCards} cards</Text>
+      </View>
     </SafeAreaView>
   );
 };
