@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
-import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
+import { useEditDeckMutation, useGetAllDecksQuery } from "../store/features/deck/deckSlice";
 
 const EditDeckScreen = () => {
   const {
@@ -19,13 +19,17 @@ const EditDeckScreen = () => {
   const { data: decks } = useGetAllDecksQuery();
   const deck = decks?.filter((deck) => deck.id === id)[0];
 
+  const [editDeck] = useEditDeckMutation();
+
   const [name, setName] = useState(deck?.name || "");
   const [isPrivate, setIsPrivate] = useState(deck?.isPrivate || false);
 
   const navigation = useNavigation();
 
-  const onSubmit = () => {
-    console.log(name, isPrivate);
+  const onSubmit = async () => {
+    const formattedName = name.trim();
+    await editDeck({deckId: id, name: formattedName, isPrivate });
+    navigation.goBack();
   };
 
   return (

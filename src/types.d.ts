@@ -41,3 +41,9 @@ type NewDeckRequest = {
   name: string;
   isPrivate: boolean;
 }
+
+type EditDeckRequest = {
+  deckId: number;
+  name: string;
+  isPrivate: boolean;
+}

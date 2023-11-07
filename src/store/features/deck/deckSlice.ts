@@ -21,9 +21,18 @@ export const deckApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...credentials },
       }),
-      invalidatesTags: [{ type: "Deck", id: "LIST" }]
+      invalidatesTags: [{ type: "Deck", id: "LIST" }],
+    }),
+    editDeck: builder.mutation<Deck, EditDeckRequest>({
+      query: ({ deckId, name, isPrivate }) => ({
+        url: `/deck/${deckId}`,
+        method: "PATCH",
+        body: { name, isPrivate },
+      }),
+      invalidatesTags: [{ type: "Deck", id: "LIST" }],
     }),
   }),
 });
 
-export const { useGetAllDecksQuery, useNewDeckMutation } = deckApiSlice;
+export const { useGetAllDecksQuery, useNewDeckMutation, useEditDeckMutation } =
+  deckApiSlice;
