@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
+import DeckPopupMenu from "../components/DeckPopupMenu";
 
 const DeckScreen = () => {
   const {
@@ -21,11 +22,7 @@ const DeckScreen = () => {
         >
           <MaterialCommunityIcons name="arrow-left" size={25} />
         </TouchableOpacity>
-        <TouchableOpacity
-          className="self-start mx-3 p-2"
-        >
-          <MaterialCommunityIcons name="dots-vertical" size={25} />
-        </TouchableOpacity>
+        <DeckPopupMenu />
       </View>
 
       <View className="mx-6 mt-2">
