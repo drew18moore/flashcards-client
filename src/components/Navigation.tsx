@@ -10,6 +10,7 @@ import MainScreen from "../screens/MainScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import NewDeckScreen from "../screens/NewDeckScreen";
 import DeckScreen from "../screens/DeckScreen";
+import EditDeckScreen from "../screens/EditDeckScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,7 @@ export default function Navigation() {
               component={SettingsScreen}
             />
             <Stack.Screen name="new-deck" component={NewDeckScreen} />
+            <Stack.Screen name="edit-deck" component={EditDeckScreen} />
             <Stack.Screen name="deck" component={DeckScreen} />
           </Stack.Group>
         )}

@@ -22,7 +22,7 @@ const DeckScreen = () => {
         >
           <MaterialCommunityIcons name="arrow-left" size={25} />
         </TouchableOpacity>
-        <DeckPopupMenu />
+        <DeckPopupMenu id={id} />
       </View>
 
       <View className="mx-6 mt-2">
