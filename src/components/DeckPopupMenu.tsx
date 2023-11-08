@@ -5,11 +5,12 @@ import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Props = {
-  id: number
-}
+  id: number;
+};
 
 const DeckPopupMenu = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(true);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   return (
@@ -33,12 +34,41 @@ const DeckPopupMenu = ({ id }: Props) => {
               <MaterialCommunityIcons name="pencil-outline" size={20} />
               <Text className="text-lg">Edit</Text>
             </TouchableOpacity>
-            <TouchableOpacity className="px-4 py-2 flex-row items-center space-x-3">
+            <TouchableOpacity
+              onPress={() => {
+                setShowDeleteModal(true);
+                setOpen(false);
+              }}
+              className="px-4 py-2 flex-row items-center space-x-3"
+            >
               <MaterialCommunityIcons name="trash-can-outline" size={20} />
               <Text className="text-lg">Delete</Text>
             </TouchableOpacity>
           </View>
         </Pressable>
+      </Modal>
+      <Modal transparent visible={showDeleteModal} className="">
+        <View className="flex-1 justify-center items-center">
+          <Pressable
+            className="absolute top-0 bottom-0 left-0 right-0"
+            onPress={() => setShowDeleteModal(false)}
+          />
+          {/* <View className=""> */}
+            <View className="bg-white rounded-md p-5 space-y-4 border">
+              <Text className="text-center">
+                Are you sure you want to delete this deck?
+              </Text>
+              <View className="flex-row items-center justify-center space-x-4">
+                <TouchableOpacity className="border rounded-md px-2 py-1">
+                  <Text className="text-lg">Cancel</Text>
+                </TouchableOpacity>
+                <TouchableOpacity className="border rounded-md px-2 py-1 border-red-500 bg-red-500">
+                  <Text className="text-white text-lg">Delete</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          {/* </View> */}
+        </View>
       </Modal>
     </>
   );
