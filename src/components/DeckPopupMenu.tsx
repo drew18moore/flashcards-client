@@ -53,13 +53,12 @@ const DeckPopupMenu = ({ id }: Props) => {
             className="absolute top-0 bottom-0 left-0 right-0"
             onPress={() => setShowDeleteModal(false)}
           />
-          {/* <View className=""> */}
             <View className="bg-white rounded-md p-5 space-y-4 border">
               <Text className="text-center">
                 Are you sure you want to delete this deck?
               </Text>
               <View className="flex-row items-center justify-center space-x-4">
-                <TouchableOpacity className="border rounded-md px-2 py-1">
+                <TouchableOpacity onPress={() => setShowDeleteModal(false)} className="border rounded-md px-2 py-1">
                   <Text className="text-lg">Cancel</Text>
                 </TouchableOpacity>
                 <TouchableOpacity className="border rounded-md px-2 py-1 border-red-500 bg-red-500">
@@ -67,7 +66,6 @@ const DeckPopupMenu = ({ id }: Props) => {
                 </TouchableOpacity>
               </View>
             </View>
-          {/* </View> */}
         </View>
       </Modal>
     </>
