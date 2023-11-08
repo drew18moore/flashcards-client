@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useDeleteDeckMutation } from "../store/features/deck/deckSlice";
 
 type Props = {
   id: number;
@@ -10,9 +11,15 @@ type Props = {
 
 const DeckPopupMenu = ({ id }: Props) => {
   const [open, setOpen] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(true);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+  const [deleteDeck] = useDeleteDeckMutation();
+
+  const onDelete = async () => {
+    await deleteDeck(id);
+    navigation.goBack();
+  }
   return (
     <>
       <TouchableOpacity
@@ -61,7 +68,7 @@ const DeckPopupMenu = ({ id }: Props) => {
                 <TouchableOpacity onPress={() => setShowDeleteModal(false)} className="border rounded-md px-2 py-1">
                   <Text className="text-lg">Cancel</Text>
                 </TouchableOpacity>
-                <TouchableOpacity className="border rounded-md px-2 py-1 border-red-500 bg-red-500">
+                <TouchableOpacity onPress={onDelete} className="border rounded-md px-2 py-1 border-red-500 bg-red-500">
                   <Text className="text-white text-lg">Delete</Text>
                 </TouchableOpacity>
               </View>
