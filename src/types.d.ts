@@ -14,6 +14,15 @@ type Deck = {
   numCards: number;
 };
 
+type Card = {
+  id: number;
+  userId: number;
+  deckId: number;
+  frontText: string;
+  backText: string;
+  createdAt: string;
+}
+
 type AuthResponse = {
   token: string;
   userDTO: User;
