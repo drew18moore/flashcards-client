@@ -23,8 +23,6 @@ const SettingsScreen = () => {
   };
 
   const saveProfile = async () => {
-    console.log(displayName, username);
-
     const formattedDisplayName = displayName.trim();
     const formattedUsername = username.toLowerCase().trim();
 

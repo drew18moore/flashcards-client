@@ -22,7 +22,6 @@ const SignupScreen = () => {
   const navigation = useNavigation();
 
   const onSignup = async () => {
-    console.log(username, password, confirmPassword);
     const formattedUsername = username.toLowerCase().trim();
     const formattedDisplayName = displayName.trim();
 

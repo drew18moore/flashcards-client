@@ -19,7 +19,6 @@ const NewDeckScreen = () => {
   const [newDeck] = useNewDeckMutation();
 
   const onSubmit = async () => {
-    console.log(name, isPrivate);
     const formattedName = name.trim();
     await newDeck({ name: formattedName, isPrivate });
     navigation.goBack();

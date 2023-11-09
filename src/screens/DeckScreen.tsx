@@ -1,4 +1,10 @@
-import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -17,7 +23,6 @@ const DeckScreen = () => {
 
   const { data: cards } = useGetAllCardsInDeckQuery(id);
 
-  console.log(cards);
   const navigation = useNavigation();
   return (
     <SafeAreaView>
@@ -38,10 +43,21 @@ const DeckScreen = () => {
               ? `${deck?.numCards} card`
               : `${deck?.numCards} cards`}
           </Text>
-          <View>
-            {cards?.map((card) => (
-              <Card key={card.id} id={card.id} userId={card.userId} deckId={card.deckId} frontText={card.frontText} backText={card.backText} createdAt={card.createdAt} />
-            )) }
+          <View className="mt-8 space-y-1">
+            <Text className="font-bold">Cards</Text>
+            <View>
+              {cards?.map((card) => (
+                <Card
+                  key={card.id}
+                  id={card.id}
+                  userId={card.userId}
+                  deckId={card.deckId}
+                  frontText={card.frontText}
+                  backText={card.backText}
+                  createdAt={card.createdAt}
+                />
+              ))}
+            </View>
           </View>
         </View>
       </ScrollView>

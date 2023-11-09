@@ -24,7 +24,6 @@ export default function LoginScreen() {
   const navigation = useNavigation();
 
   const onLogin = async () => {
-    console.log(username, password);
     const formattedUsername = username.toLowerCase().trim();
 
     try {
