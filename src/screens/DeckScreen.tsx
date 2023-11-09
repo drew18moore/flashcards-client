@@ -4,6 +4,8 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
 import DeckPopupMenu from "../components/DeckPopupMenu";
+import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
+import Card from "../store/features/card/Card";
 
 const DeckScreen = () => {
   const {
@@ -12,6 +14,10 @@ const DeckScreen = () => {
 
   const { data: decks } = useGetAllDecksQuery();
   const deck = decks?.filter((deck) => deck.id === id)[0];
+
+  const { data: cards } = useGetAllCardsInDeckQuery(id);
+
+  console.log(cards);
   const navigation = useNavigation();
   return (
     <SafeAreaView>
@@ -32,6 +38,11 @@ const DeckScreen = () => {
               ? `${deck?.numCards} card`
               : `${deck?.numCards} cards`}
           </Text>
+          <View>
+            {cards?.map((card) => (
+              <Card key={card.id} id={card.id} userId={card.userId} deckId={card.deckId} frontText={card.frontText} backText={card.backText} createdAt={card.createdAt} />
+            )) }
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
