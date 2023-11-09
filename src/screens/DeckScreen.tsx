@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity, ScrollView } from "react-native";
 import React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -24,11 +24,16 @@ const DeckScreen = () => {
         </TouchableOpacity>
         <DeckPopupMenu id={id} />
       </View>
-
-      <View className="mx-6 mt-2">
-        <Text className="text-lg font-bold">{deck?.name}</Text>
-        <Text className="">{deck?.numCards} cards</Text>
-      </View>
+      <ScrollView className="h-full">
+        <View className="mx-6 mt-2">
+          <Text className="text-lg font-bold">{deck?.name}</Text>
+          <Text className="">
+            {deck?.numCards === 1
+              ? `${deck?.numCards} card`
+              : `${deck?.numCards} cards`}
+          </Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

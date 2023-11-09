@@ -9,7 +9,7 @@ const Deck = ({ id, userId, name, isPrivate, createdAt, numCards }: Deck) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate("deck", { id })} className="border p-5 rounded-md">
       <Text>{name}</Text>
-      <Text>{numCards} cards</Text>
+      <Text>{numCards === 1 ? `${numCards} card`: `${numCards} cards`}</Text>
     </TouchableOpacity>
   );
 };
