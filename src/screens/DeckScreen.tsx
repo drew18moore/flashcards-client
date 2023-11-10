@@ -6,12 +6,15 @@ import {
   ScrollView,
 } from "react-native";
 import React from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
 import DeckPopupMenu from "../components/DeckPopupMenu";
 import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
 import Card from "../store/features/card/Card";
+import NewDeckButton from "../components/FloatingPlusButton";
+import FloatingPlusButton from "../components/FloatingPlusButton";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const DeckScreen = () => {
   const {
@@ -23,9 +26,12 @@ const DeckScreen = () => {
 
   const { data: cards } = useGetAllCardsInDeckQuery(id);
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   return (
     <SafeAreaView>
+      <View className="absolute z-10 bottom-20 right-6">
+        <FloatingPlusButton onPress={() => navigation.navigate("new-card")} />
+      </View>
       <View className="flex-row justify-between">
         <TouchableOpacity
           onPress={() => navigation.goBack()}

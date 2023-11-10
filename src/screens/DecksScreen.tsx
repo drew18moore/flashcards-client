@@ -2,15 +2,18 @@ import { SafeAreaView, ScrollView, View } from "react-native";
 import React from "react";
 import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
 import Deck from "../store/features/deck/Deck";
-import NewDeckButton from "../components/NewDeckButton";
+import NewDeckButton from "../components/FloatingPlusButton";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 export default function DecksScreen() {
   const { data: decks } = useGetAllDecksQuery();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
     <SafeAreaView>
       <View className="absolute z-10 bottom-3 right-3">
-        <NewDeckButton />
+        <NewDeckButton onPress={() => navigation.navigate("new-deck")}/>
       </View>
       <ScrollView
         className="h-full px-4"
