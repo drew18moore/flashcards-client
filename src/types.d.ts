@@ -56,3 +56,9 @@ type EditDeckRequest = {
   name: string;
   isPrivate: boolean;
 }
+
+type NewCardRequest = {
+  deckId: number;
+  frontText: string;
+  backText: string;
+}

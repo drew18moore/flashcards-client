@@ -15,7 +15,14 @@ export const cardApiSlice = apiSlice.injectEndpoints({
             ]
           : [{ type: "Card", id: "LIST" }],
     }),
+    newCard: builder.mutation<Card, NewCardRequest>({
+      query: (credentials) => ({
+        url: "/deck",
+        method: "POST",
+        body: { ...credentials },
+      }),
+    })
   }),
 });
 
-export const { useGetAllCardsInDeckQuery } = cardApiSlice;
+export const { useGetAllCardsInDeckQuery, useNewCardMutation } = cardApiSlice;
