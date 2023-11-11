@@ -17,10 +17,11 @@ export const cardApiSlice = apiSlice.injectEndpoints({
     }),
     newCard: builder.mutation<Card, NewCardRequest>({
       query: (credentials) => ({
-        url: "/deck",
+        url: "/card",
         method: "POST",
         body: { ...credentials },
       }),
+      invalidatesTags: [{ type: "Card", id: "LIST" }],
     })
   }),
 });

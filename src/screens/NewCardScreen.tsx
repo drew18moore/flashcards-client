@@ -1,16 +1,26 @@
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from 'react-native';
+import { useNewCardMutation } from '../store/features/card/cardSlice';
 
 const NewCardScreen = () => {
+  const {
+    params: { id },
+  } = useRoute<any>();
   const navigation = useNavigation();
+
   const [frontText, setFrontText] = useState("");
   const [backText, setBackText] = useState("");
 
-  const onSubmit = () => {
+  const [newCard] = useNewCardMutation();
+
+  const onSubmit = async () => {
     console.log(frontText, backText);
+    await newCard({ deckId: id, frontText: frontText.trim(), backText: backText.trim() });
+    setFrontText("");
+    setBackText("");
   }
 
   return (

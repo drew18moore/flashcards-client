@@ -30,7 +30,7 @@ const DeckScreen = () => {
   return (
     <SafeAreaView>
       <View className="absolute z-10 bottom-20 right-6">
-        <FloatingPlusButton onPress={() => navigation.navigate("new-card")} />
+        <FloatingPlusButton onPress={() => navigation.navigate("new-card", { id })} />
       </View>
       <View className="flex-row justify-between">
         <TouchableOpacity
