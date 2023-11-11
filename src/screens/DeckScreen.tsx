@@ -51,7 +51,7 @@ const DeckScreen = () => {
           </Text>
           <View className="mt-8 space-y-1">
             <Text className="font-bold">Cards</Text>
-            <View>
+            <View style={{ rowGap: 5, paddingBottom: 60 }}>
               {cards?.map((card) => (
                 <Card
                   key={card.id}
