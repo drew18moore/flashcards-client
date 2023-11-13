@@ -9,7 +9,7 @@ import React, { useState } from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
-import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
+import { useEditCardMutation, useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
 
 const EditCardScreen = () => {
   const {
@@ -19,7 +19,7 @@ const EditCardScreen = () => {
   const { data: cards } = useGetAllCardsInDeckQuery(deckId);
   const card = cards?.filter((card) => card.id === cardId)[0];
 
-  // const [editDeck] = useEditDeckMutation();
+  const [editCard] = useEditCardMutation();
 
   const [frontText, setFrontText] = useState(card?.frontText || "");
   const [backText, setBackText] = useState(card?.backText || "");
@@ -29,9 +29,8 @@ const EditCardScreen = () => {
   const onSubmit = async () => {
     const formattedFrontText = frontText.trim();
     const formattedBackText = backText.trim();
-    // await editDeck({deckId: id, name: formattedName, isPrivate });
-    // navigation.goBack();
-    console.log(formattedFrontText, formattedBackText);
+    await editCard({cardId, frontText: formattedFrontText, backText: formattedBackText });
+    navigation.goBack();
   };
 
   return (

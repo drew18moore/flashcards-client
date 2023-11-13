@@ -62,3 +62,9 @@ type NewCardRequest = {
   frontText: string;
   backText: string;
 }
+
+type EditCardRequest = {
+  cardId: number;
+  frontText: string;
+  backText: string;
+}

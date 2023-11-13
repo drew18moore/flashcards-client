@@ -22,8 +22,20 @@ export const cardApiSlice = apiSlice.injectEndpoints({
         body: { ...credentials },
       }),
       invalidatesTags: [{ type: "Card", id: "LIST" }],
-    })
+    }),
+    editCard: builder.mutation<Card, EditCardRequest>({
+      query: ({ cardId, frontText, backText }) => ({
+        url: `/card/${cardId}`,
+        method: "PATCH",
+        body: { frontText, backText },
+      }),
+      invalidatesTags: [{ type: "Card", id: "LIST" }],
+    }),
   }),
 });
 
-export const { useGetAllCardsInDeckQuery, useNewCardMutation } = cardApiSlice;
+export const {
+  useGetAllCardsInDeckQuery,
+  useNewCardMutation,
+  useEditCardMutation,
+} = cardApiSlice;
