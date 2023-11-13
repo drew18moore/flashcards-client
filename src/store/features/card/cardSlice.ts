@@ -31,6 +31,13 @@ export const cardApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: [{ type: "Card", id: "LIST" }],
     }),
+    deleteCard: builder.mutation<void, number>({
+      query: (cardId) => ({
+        url: `/card/${cardId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "Card", id: "LIST" }]
+    }),
   }),
 });
 
@@ -38,4 +45,5 @@ export const {
   useGetAllCardsInDeckQuery,
   useNewCardMutation,
   useEditCardMutation,
+  useDeleteCardMutation
 } = cardApiSlice;
