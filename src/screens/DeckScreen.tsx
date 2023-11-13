@@ -14,6 +14,7 @@ import Card from "../store/features/card/Card";
 import FloatingPlusButton from "../components/FloatingPlusButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import DeckBottomSheet from "../components/DeckBottomSheet";
+import CardBottomSheet from "../components/CardBottomSheet";
 
 const DeckScreen = () => {
   const {
@@ -28,6 +29,8 @@ const DeckScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const [open, setOpen] = useState(false);
+  const [openCardBottomSheet, setOpenCardBottomSheet] = useState(false);
+  const [cardId, setCardId] = useState<number>(-1);
 
   return (
     <SafeAreaView>
@@ -68,6 +71,8 @@ const DeckScreen = () => {
                   frontText={card.frontText}
                   backText={card.backText}
                   createdAt={card.createdAt}
+                  setOpenCardBottomSheet={setOpenCardBottomSheet}
+                  setCardId={setCardId}
                 />
               ))}
             </View>
@@ -76,6 +81,7 @@ const DeckScreen = () => {
       </ScrollView>
 
       <DeckBottomSheet id={id} open={open} setOpen={setOpen} />
+      <CardBottomSheet id={cardId} deckId={id} open={openCardBottomSheet} setOpen={setOpenCardBottomSheet} />
     </SafeAreaView>
   );
 };
