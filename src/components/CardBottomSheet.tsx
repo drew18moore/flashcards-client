@@ -3,6 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useState } from "react";
+import { useDeleteCardMutation } from "../store/features/card/cardSlice";
 
 type Props = {
   id: number;
@@ -14,9 +15,11 @@ type Props = {
 const CardBottomSheet = ({ id, deckId, open, setOpen }: Props) => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteCard] = useDeleteCardMutation();
 
   const onDelete = async () => {
-    console.log(`DELETE CARD ID: ${id}`);
+    await deleteCard(id);
+    setShowDeleteModal(false);
   }
 
   return (
