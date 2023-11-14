@@ -49,7 +49,7 @@ const DeckBottomSheet = ({ id, open, setOpen }: Props) => {
           </View>
         </Pressable>
       </Modal>
-      <Modal transparent visible={showDeleteModal} className="">
+      <Modal transparent visible={showDeleteModal} animationType="slide">
         <View className="flex-1 justify-center items-center">
           <Pressable
             className="absolute top-0 bottom-0 left-0 right-0"
