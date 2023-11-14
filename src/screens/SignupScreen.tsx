@@ -1,6 +1,5 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import React, { useState } from "react";
-import { SafeAreaView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from "react-native";
@@ -8,6 +7,7 @@ import { useSignupMutation } from "../store/features/auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../store/features/auth/authSlice";
 import * as SecureStore from "expo-secure-store";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignupScreen = () => {
   const [displayName, setDisplayName] = useState("");
@@ -49,7 +49,7 @@ const SignupScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         className="self-start mx-3 p-2"

@@ -1,4 +1,4 @@
-import { Text, SafeAreaView, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout, selectCurrentUser, setUser } from "../store/features/auth/authSlice";
 import * as SecureStorage from "expo-secure-store";
 import { useEditUserMutation } from "../store/features/user/userApiSlice";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Platform } from "react-native";
 
 const SettingsScreen = () => {
   const user = useSelector(selectCurrentUser);
@@ -39,7 +41,7 @@ const SettingsScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}

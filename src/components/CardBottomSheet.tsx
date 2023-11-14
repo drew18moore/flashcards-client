@@ -26,7 +26,7 @@ const CardBottomSheet = ({ id, deckId, open, setOpen }: Props) => {
     <>
       <Modal transparent visible={open} animationType="slide">
         <Pressable className="flex-1" onPress={() => setOpen(false)}>
-          <View className="bg-white absolute bottom-0 right-0 left-0 border rounded-md space-y-2 px-3 pt-4 pb-6">
+          <View className="bg-white absolute bottom-0 right-0 left-0 border rounded-bl-none rounded-br-none rounded-t-md space-y-2 px-3 pt-4 pb-6">
             <TouchableOpacity
               onPress={() => {
                 setOpen(false);

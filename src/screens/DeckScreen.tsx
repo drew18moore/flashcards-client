@@ -1,9 +1,9 @@
 import {
   View,
   Text,
-  SafeAreaView,
   TouchableOpacity,
   ScrollView,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
@@ -15,6 +15,7 @@ import FloatingPlusButton from "../components/FloatingPlusButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import DeckBottomSheet from "../components/DeckBottomSheet";
 import CardBottomSheet from "../components/CardBottomSheet";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const DeckScreen = () => {
   const {
@@ -33,7 +34,7 @@ const DeckScreen = () => {
   const [cardId, setCardId] = useState<number>(-1);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View className="absolute z-10 bottom-20 right-6">
         <FloatingPlusButton onPress={() => navigation.navigate("new-card", { id })} />
       </View>

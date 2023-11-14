@@ -1,10 +1,11 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Platform } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../store/features/auth/authSlice";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
   const user = useSelector(selectCurrentUser);
@@ -17,7 +18,7 @@ const ProfileScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={`${Platform.OS === "android" ? "pt-6" : ""}`}>
       <View className="px-4 flex-row">
         <View className="space-y-2 flex-1">
           <Text className="font-bold text-xl">{user?.displayName}</Text>

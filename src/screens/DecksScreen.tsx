@@ -1,10 +1,11 @@
-import { RefreshControl, SafeAreaView, ScrollView, Text, View } from "react-native";
+import { Platform, RefreshControl, ScrollView, Text, View } from "react-native";
 import React from "react";
 import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
 import Deck from "../store/features/deck/Deck";
 import NewDeckButton from "../components/FloatingPlusButton";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function DecksScreen() {
   const { data: decks, refetch } = useGetAllDecksQuery();
@@ -19,7 +20,7 @@ export default function DecksScreen() {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View className="absolute z-10 bottom-14 right-3">
         <NewDeckButton onPress={() => navigation.navigate("new-deck")} />
       </View>

@@ -1,9 +1,10 @@
-import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Platform } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { TextInput } from 'react-native';
 import { useNewCardMutation } from '../store/features/card/cardSlice';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const NewCardScreen = () => {
   const {
@@ -24,7 +25,7 @@ const NewCardScreen = () => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}

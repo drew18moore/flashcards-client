@@ -1,9 +1,9 @@
 import {
   View,
   Text,
-  SafeAreaView,
   TextInput,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import React, { useState } from "react";
 import { useLoginMutation } from "../store/features/auth/authApiSlice";
@@ -12,6 +12,7 @@ import { setCredentials } from "../store/features/auth/authSlice";
 import * as SecureStore from "expo-secure-store";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function LoginScreen() {
   const [username, setUsername] = useState("");
@@ -47,7 +48,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <TouchableOpacity
         onPress={() => navigation.goBack()}
         className="self-start mx-3 p-2"

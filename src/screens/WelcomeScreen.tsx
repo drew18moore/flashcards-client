@@ -1,16 +1,15 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, Platform } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-type Props = {};
-
-const WelcomeScreen = (props: Props) => {
+const WelcomeScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   return (
-    <SafeAreaView className="flex-1">
+    <SafeAreaView className={`flex-1 ${Platform.OS === "android" ? "pt-6" : ""}`}>
       <View className="px-8 py-2 justify-between flex-1">
         <Text className="text-2xl font-bold">Flashcards</Text>
         <View className="space-y-4 mb-4">
