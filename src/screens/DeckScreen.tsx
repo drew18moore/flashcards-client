@@ -71,7 +71,7 @@ const DeckScreen = () => {
             </View>
 
             <View>
-              <TouchableOpacity className="flex-row border p-3 rounded-md items-center space-x-3">
+              <TouchableOpacity onPress={() => navigation.navigate("flashcards", { id })} className="flex-row border p-3 rounded-md items-center space-x-3">
                 <MaterialCommunityIcons
                   name="card-multiple"
                   size={25}
