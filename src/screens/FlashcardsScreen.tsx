@@ -1,9 +1,10 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Animated } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
+import Flashcard from "../store/features/card/Flashcard";
 
 const FlashcardsScreen = () => {
   const {
@@ -12,6 +13,15 @@ const FlashcardsScreen = () => {
 
   const navigation = useNavigation();
   const { data: cards } = useGetAllCardsInDeckQuery(id);
+
+  const pan = React.useRef(new Animated.ValueXY()).current;
+
+  const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
+
+  const boxWidth = scrollViewWidth * 0.9;
+  const boxDistance = scrollViewWidth - boxWidth;
+  const halfBoxDistance = boxDistance / 2;
+  const snapWidth = boxWidth;
 
   return (
     <SafeAreaView>
@@ -27,7 +37,50 @@ const FlashcardsScreen = () => {
           <MaterialCommunityIcons name="cog-outline" size={25} />
         </TouchableOpacity>
       </View>
-      <Text>FlashcardsScreen</Text>
+
+      <FlatList
+        className="mb-10"
+        horizontal
+        data={cards}
+        contentContainerStyle={{ paddingVertical: 16 }}
+        contentInsetAdjustmentBehavior="never"
+        snapToAlignment="center"
+        decelerationRate="fast"
+        snapToInterval={snapWidth}
+        automaticallyAdjustContentInsets={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        scrollEventThrottle={1}
+        contentInset={{
+          left: halfBoxDistance,
+          right: halfBoxDistance,
+        }}
+        contentOffset={{ x: halfBoxDistance * -1, y: 0 }}
+        onLayout={(e) => {
+          setScrollViewWidth(e.nativeEvent.layout.width);
+        }}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { x: pan.x } } }],
+          {
+            useNativeDriver: false,
+          }
+        )}
+        keyExtractor={(item, index) => `${index}-${item}`}
+        renderItem={(props) => {
+          const { index, item } = props;
+
+          return (
+            <Flashcard
+              index={index}
+              {...item}
+              pan={pan}
+              boxWidth={boxWidth}
+              halfBoxDistance={halfBoxDistance}
+              snapWidth={snapWidth}
+            />
+          );
+        }}
+      />
     </SafeAreaView>
   );
 };
