@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, FlatList, Animated } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -23,6 +23,8 @@ const FlashcardsScreen = () => {
   const halfBoxDistance = boxDistance / 2;
   const snapWidth = boxWidth;
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <SafeAreaView>
       <View>
@@ -32,7 +34,7 @@ const FlashcardsScreen = () => {
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
-        <Text className="font-bold text-center p-3">1/{cards?.length}</Text>
+        <Text className="font-bold text-center p-3">{currentIndex + 1}/{cards?.length}</Text>
         <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
           <MaterialCommunityIcons name="cog-outline" size={25} />
         </TouchableOpacity>
@@ -59,12 +61,17 @@ const FlashcardsScreen = () => {
         onLayout={(e) => {
           setScrollViewWidth(e.nativeEvent.layout.width);
         }}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { x: pan.x } } }],
-          {
-            useNativeDriver: false,
+        onScroll={(event) => {
+          const totalWidth = event.nativeEvent.layoutMeasurement.width;
+          const xPosition = event.nativeEvent.contentOffset.x;
+          const newIndex = Math.round(xPosition / totalWidth);
+          if (newIndex !== currentIndex) {
+            setCurrentIndex(newIndex);
           }
-        )}
+          Animated.event([{ nativeEvent: { contentOffset: { x: pan.x } } }], {
+            useNativeDriver: false,
+          })(event);
+        }}
         keyExtractor={(item, index) => `${index}-${item}`}
         renderItem={(props) => {
           const { index, item } = props;
