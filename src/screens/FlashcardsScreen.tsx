@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, FlatList, Animated } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Animated, Platform } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -26,7 +26,7 @@ const FlashcardsScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -93,71 +93,3 @@ const FlashcardsScreen = () => {
 };
 
 export default FlashcardsScreen;
-
-// import { Pressable, StyleSheet, Text, View } from "react-native";
-// import Animated, {
-//   interpolate,
-//   useAnimatedStyle,
-//   useSharedValue,
-//   withTiming,
-// } from "react-native-reanimated";
-
-// export default function FlashcardsScreen() {
-//   const rotate = useSharedValue(0);
-//   const frontAnimatedStyles = useAnimatedStyle(() => {
-//     const rotateValue = interpolate(rotate.value, [0, 1], [0, 180]);
-//     return {
-//       transform: [
-//         {
-//           rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 }),
-//         },
-//       ],
-//     };
-//   });
-//   const backAnimatedStyles = useAnimatedStyle(() => {
-//     const rotateValue = interpolate(rotate.value, [0, 1], [180, 360]);
-//     return {
-//       transform: [
-//         {
-//           rotateY: withTiming(`${rotateValue}deg`, { duration: 1000 }),
-//         },
-//       ],
-//     };
-//   });
-//   return (
-//     <View className="flex-1 bg-red-200 items-center justify-center">
-//       <View>
-//         <Animated.View style={[styles.frontcard, frontAnimatedStyles]}>
-//           <Pressable
-//             onPress={() => {
-//               rotate.value = rotate.value ? 0 : 1;
-//             }}
-//             className="bg-gray-200"
-//           >
-//             <Text>FRONT</Text>
-//           </Pressable>
-//         </Animated.View>
-//         <Animated.View style={[styles.backCard, backAnimatedStyles]}>
-//           <Pressable
-//             onPress={() => {
-//               rotate.value = rotate.value ? 0 : 1;
-//             }}
-//             className="bg-gray-200"
-//           >
-//             <Text>BACK</Text>
-//           </Pressable>
-//         </Animated.View>
-//       </View>
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   frontcard: {
-//     position: "absolute",
-//     backfaceVisibility: "hidden",
-//   },
-//   backCard: {
-//     backfaceVisibility: "hidden",
-//   },
-// });
