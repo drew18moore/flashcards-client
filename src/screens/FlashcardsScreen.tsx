@@ -1,10 +1,17 @@
-import { View, Text, TouchableOpacity, FlatList, Animated, Platform } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+  Dimensions,
+} from "react-native";
+import React, { useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
 import Flashcard from "../store/features/card/Flashcard";
+import Carousel from "react-native-snap-carousel";
 
 const FlashcardsScreen = () => {
   const {
@@ -14,16 +21,11 @@ const FlashcardsScreen = () => {
   const navigation = useNavigation();
   const { data: cards } = useGetAllCardsInDeckQuery(id);
 
-  const pan = React.useRef(new Animated.ValueXY()).current;
-
-  const [scrollViewWidth, setScrollViewWidth] = React.useState(0);
-
-  const boxWidth = scrollViewWidth * 0.9;
-  const boxDistance = scrollViewWidth - boxWidth;
-  const halfBoxDistance = boxDistance / 2;
-  const snapWidth = boxWidth;
+  const carouselRef = useRef<any>(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { width } = Dimensions.get("window");
 
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
@@ -34,58 +36,27 @@ const FlashcardsScreen = () => {
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
-        <Text className="font-bold text-center p-3">{currentIndex + 1}/{cards?.length}</Text>
+        <Text className="font-bold text-center p-3">
+          {currentIndex + 1}/{cards?.length}
+        </Text>
         <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
           <MaterialCommunityIcons name="cog-outline" size={25} />
         </TouchableOpacity>
       </View>
 
-      <FlatList
-        className="mb-10"
-        horizontal
-        data={cards}
-        contentContainerStyle={{ paddingVertical: 16 }}
-        contentInsetAdjustmentBehavior="never"
-        snapToAlignment="center"
-        decelerationRate="fast"
-        snapToInterval={snapWidth}
-        automaticallyAdjustContentInsets={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        scrollEventThrottle={1}
-        contentInset={{
-          left: halfBoxDistance,
-          right: halfBoxDistance,
-        }}
-        contentOffset={{ x: halfBoxDistance * -1, y: 0 }}
-        onLayout={(e) => {
-          setScrollViewWidth(e.nativeEvent.layout.width);
-        }}
-        onScroll={(event) => {
-          const totalWidth = event.nativeEvent.layoutMeasurement.width;
-          const xPosition = event.nativeEvent.contentOffset.x;
-          const newIndex = Math.round(xPosition / totalWidth);
-          if (newIndex !== currentIndex) {
-            setCurrentIndex(newIndex);
-          }
-          Animated.event([{ nativeEvent: { contentOffset: { x: pan.x } } }], {
-            useNativeDriver: false,
-          })(event);
-        }}
-        keyExtractor={(item, index) => `${index}-${item}`}
-        renderItem={(props) => {
-          const { index, item } = props;
-
-          return (
-            <Flashcard
-              index={index}
-              {...item}
-              pan={pan}
-              boxWidth={boxWidth}
-              halfBoxDistance={halfBoxDistance}
-              snapWidth={snapWidth}
-            />
-          );
+      <Carousel
+        ref={carouselRef}
+        vertical={false}
+        data={cards!}
+        renderItem={(args: any) => (
+          <Flashcard {...args.item} boxWidth={width * 0.9} />
+        )}
+        sliderWidth={width}
+        itemWidth={width * 0.9}
+        contentContainerCustomStyle={{ paddingVertical: 16 }}
+        slideStyle={{ marginBottom: 40 }}
+        onScrollIndexChanged={(index) => {
+          setCurrentIndex(index)
         }}
       />
     </SafeAreaView>
