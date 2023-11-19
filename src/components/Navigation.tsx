@@ -14,6 +14,7 @@ import EditDeckScreen from "../screens/EditDeckScreen";
 import NewCardScreen from "../screens/NewCardScreen";
 import EditCardScreen from "../screens/EditCardScreen";
 import FlashcardsScreen from "../screens/FlashcardsScreen";
+import FlashcardsSettingsScreen from "../screens/FlashcardsSettingsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,7 @@ export default function Navigation() {
             <Stack.Screen name="new-card" component={NewCardScreen} />
             <Stack.Screen name="edit-card" component={EditCardScreen} />
             <Stack.Screen name="flashcards" component={FlashcardsScreen} />
+            <Stack.Screen name="flashcards-settings" component={FlashcardsSettingsScreen} />
           </Stack.Group>
         )}
       </Stack.Navigator>

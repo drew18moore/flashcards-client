@@ -8,17 +8,18 @@ import {
 import React, { useRef, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
 import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
 import Flashcard from "../store/features/card/Flashcard";
 import Carousel from "react-native-snap-carousel";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const FlashcardsScreen = () => {
   const {
     params: { id },
   } = useRoute<any>();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const { data: cards } = useGetAllCardsInDeckQuery(id);
 
   const carouselRef = useRef<any>(null);
@@ -39,7 +40,7 @@ const FlashcardsScreen = () => {
         <Text className="font-bold text-center p-3">
           {currentIndex + 1}/{cards?.length}
         </Text>
-        <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
+        <TouchableOpacity onPress={() => navigation.navigate("flashcards-settings")} className="self-start mx-2 p-2 absolute z-10 right-0">
           <MaterialCommunityIcons name="cog-outline" size={25} />
         </TouchableOpacity>
       </View>
