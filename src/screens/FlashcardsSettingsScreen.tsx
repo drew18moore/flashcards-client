@@ -13,8 +13,13 @@ import {
 const FlashcardsSettingsScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const dispatch = useDispatch();
-  const { isFrontOrientation } = useSelector(selectFlashcardsOptions);
+  const options = useSelector(selectFlashcardsOptions);
 
+  const [isFrontOrientation, setFrontOrientation] = useState(options.isFrontOrientation);
+
+  const save = () => {
+    dispatch(setFlashcardsOptions({ isFrontOrientation }))
+  }
   return (
     <SafeAreaView>
       <View>
@@ -25,7 +30,7 @@ const FlashcardsSettingsScreen = () => {
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
         <Text className="font-bold text-center p-3">Options</Text>
-        <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
+        <TouchableOpacity onPress={save} className="self-start mx-2 p-2 absolute z-10 right-0">
           <MaterialCommunityIcons name="check" size={25} color="#2563EB" />
         </TouchableOpacity>
       </View>
@@ -35,7 +40,7 @@ const FlashcardsSettingsScreen = () => {
         <View className="flex-row space-x-2">
           <Pressable
             onPress={() =>
-              dispatch(setFlashcardsOptions({ isFrontOrientation: true }))
+              setFrontOrientation(true)
             }
             className={`border p-2 flex-grow items-center rounded-md ${
               isFrontOrientation ? "border-blue-600" : ""
@@ -51,7 +56,7 @@ const FlashcardsSettingsScreen = () => {
           </Pressable>
           <Pressable
             onPress={() =>
-              dispatch(setFlashcardsOptions({ isFrontOrientation: false }))
+              setFrontOrientation(false)
             }
             className={`border p-2 flex-grow items-center rounded-md ${
               !isFrontOrientation ? "border-blue-600" : ""
