@@ -4,11 +4,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectFlashcardsOptions,
+  setFlashcardsOptions,
+} from "../store/features/options/optionsSlice";
 
 const FlashcardsSettingsScreen = () => {
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
-
-  const [isFrontOrientation, setIsFrontOrientation] = useState(true);
+  const dispatch = useDispatch();
+  const { isFrontOrientation } = useSelector(selectFlashcardsOptions);
 
   return (
     <SafeAreaView>
@@ -28,11 +33,37 @@ const FlashcardsSettingsScreen = () => {
       <View className="p-5 space-y-1">
         <Text className="text-lg font-bold">CARD ORIENTATION</Text>
         <View className="flex-row space-x-2">
-          <Pressable onPress={() => setIsFrontOrientation(true)} className={`border p-2 flex-grow items-center rounded-md ${isFrontOrientation ? "border-blue-600" : ""}`}>
-            <Text className={`font-bold ${isFrontOrientation ? "text-blue-600" : ""}`}>Front</Text>
+          <Pressable
+            onPress={() =>
+              dispatch(setFlashcardsOptions({ isFrontOrientation: true }))
+            }
+            className={`border p-2 flex-grow items-center rounded-md ${
+              isFrontOrientation ? "border-blue-600" : ""
+            }`}
+          >
+            <Text
+              className={`font-bold ${
+                isFrontOrientation ? "text-blue-600" : ""
+              }`}
+            >
+              Front
+            </Text>
           </Pressable>
-          <Pressable onPress={() => setIsFrontOrientation(false)} className={`border p-2 flex-grow items-center rounded-md ${!isFrontOrientation ? "border-blue-600" : ""}`}>
-            <Text className={`font-bold ${!isFrontOrientation ? "text-blue-600" : ""}`}>Back</Text>
+          <Pressable
+            onPress={() =>
+              dispatch(setFlashcardsOptions({ isFrontOrientation: false }))
+            }
+            className={`border p-2 flex-grow items-center rounded-md ${
+              !isFrontOrientation ? "border-blue-600" : ""
+            }`}
+          >
+            <Text
+              className={`font-bold ${
+                !isFrontOrientation ? "text-blue-600" : ""
+              }`}
+            >
+              Back
+            </Text>
           </Pressable>
         </View>
       </View>
