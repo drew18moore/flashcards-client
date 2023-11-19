@@ -14,6 +14,7 @@ import Animated, {
 
 type Props = Card & {
   boxWidth: number;
+  isFrontOrientation: boolean;
 };
 
 const Flashcard = ({
@@ -21,6 +22,7 @@ const Flashcard = ({
   frontText,
   backText,
   boxWidth,
+  isFrontOrientation
 }: Props) => {
   const rotate = useSharedValue(0);
   const frontAnimatedStyles = useAnimatedStyle(() => {
@@ -55,7 +57,7 @@ const Flashcard = ({
             rotate.value = rotate.value ? 0 : 1;
           }}
         >
-          <Text className="text-xl font-bold">{frontText}</Text>
+          <Text className="text-xl font-bold">{isFrontOrientation ? frontText : backText}</Text>
         </Pressable>
       </Animated.View>
       <Animated.View style={[styles.backCard, backAnimatedStyles]}>
@@ -67,7 +69,7 @@ const Flashcard = ({
             rotate.value = rotate.value ? 0 : 1;
           }}
         >
-          <Text className="text-xl font-bold">{backText}</Text>
+          <Text className="text-xl font-bold">{isFrontOrientation ? backText : frontText}</Text>
         </Pressable>
       </Animated.View>
     </View>

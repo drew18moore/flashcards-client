@@ -13,6 +13,8 @@ import { useGetAllCardsInDeckQuery } from "../store/features/card/cardSlice";
 import Flashcard from "../store/features/card/Flashcard";
 import Carousel from "react-native-snap-carousel";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useSelector } from "react-redux";
+import { selectFlashcardsOptions } from "../store/features/options/optionsSlice";
 
 const FlashcardsScreen = () => {
   const {
@@ -27,6 +29,8 @@ const FlashcardsScreen = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const { width } = Dimensions.get("window");
+
+  const { isFrontOrientation } = useSelector(selectFlashcardsOptions);
 
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
@@ -50,7 +54,7 @@ const FlashcardsScreen = () => {
         vertical={false}
         data={cards!}
         renderItem={(args: any) => (
-          <Flashcard {...args.item} boxWidth={width * 0.9} />
+          <Flashcard {...args.item} boxWidth={width * 0.9} isFrontOrientation={isFrontOrientation} />
         )}
         sliderWidth={width}
         itemWidth={width * 0.9}
