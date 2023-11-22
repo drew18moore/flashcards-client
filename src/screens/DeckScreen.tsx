@@ -70,8 +70,11 @@ const DeckScreen = () => {
               </Text>
             </View>
 
-            <View>
-              <TouchableOpacity onPress={() => navigation.navigate("flashcards", { id })} className="flex-row border p-3 rounded-md items-center space-x-3">
+            <View className="space-y-1">
+              <TouchableOpacity
+                onPress={() => navigation.navigate("flashcards", { id })}
+                className="flex-row border p-3 rounded-md items-center space-x-3"
+              >
                 <MaterialCommunityIcons
                   name="card-multiple"
                   size={25}
@@ -80,6 +83,20 @@ const DeckScreen = () => {
                 <View>
                   <Text className="font-bold">Flashcards</Text>
                   <Text>Review terms an definitions</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("test-config", { id })}
+                className="flex-row border p-3 rounded-md items-center space-x-3"
+              >
+                <MaterialCommunityIcons
+                  name="file-document-multiple"
+                  size={25}
+                  color="#2563EB"
+                />
+                <View>
+                  <Text className="font-bold">Test</Text>
+                  <Text>Take a practice test</Text>
                 </View>
               </TouchableOpacity>
             </View>
