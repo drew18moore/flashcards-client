@@ -11,8 +11,8 @@ const MultipleChoiceQuestion = ({
       <Text>MultipleChoiceQuestion</Text>
       <Text>{questionText}</Text>
       <View>
-        {options.map((option) => (
-          <Text>{option}</Text>
+        {options.map((option, i) => (
+          <Text key={i}>{option}</Text>
         ))}
       </View>
     </View>

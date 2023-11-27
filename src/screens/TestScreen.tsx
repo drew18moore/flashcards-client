@@ -48,9 +48,11 @@ const TestScreen = () => {
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <Text>TestScreen</Text>
+      <Text>{currentQuestionIndex + 1}/{testQuestions!.length}</Text>
       <View>{currentQuestion()}</View>
       <View className="flex-row">
         <TouchableOpacity
+          disabled={currentQuestionIndex <= 0}
           onPress={() => {
             setCurrentQuestionIndex((prev) => prev - 1);
           }}
@@ -59,6 +61,7 @@ const TestScreen = () => {
           <Text className="text-lg">Prev</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          disabled={currentQuestionIndex >= testQuestions!.length - 1}
           onPress={() => {
             setCurrentQuestionIndex((prev) => prev + 1);
           }}
