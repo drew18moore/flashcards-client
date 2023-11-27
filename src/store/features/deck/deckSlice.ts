@@ -46,9 +46,9 @@ export const deckApiSlice = apiSlice.injectEndpoints({
         multipleChoice,
         written,
       }) => ({
-        url: `/deck/${deckId}`,
+        url: `/deck/${deckId}/test`,
         method: "GET",
-        params: { trueFalse, multipleChoice, written }
+        params: { numQuestions, trueFalse, multipleChoice, written }
       }),
     }),
   }),
