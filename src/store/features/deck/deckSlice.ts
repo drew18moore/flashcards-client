@@ -36,10 +36,28 @@ export const deckApiSlice = apiSlice.injectEndpoints({
         url: `/deck/${deckId}`,
         method: "DELETE",
       }),
-      invalidatesTags: [{ type: "Deck", id: "LIST" }]
-    })
+      invalidatesTags: [{ type: "Deck", id: "LIST" }],
+    }),
+    getTestQuestions: builder.mutation<Question[], GetTestQuestionsRequest>({
+      query: ({
+        deckId,
+        numQuestions,
+        trueFalse,
+        multipleChoice,
+        written,
+      }) => ({
+        url: `/deck/${deckId}`,
+        method: "GET",
+        params: { trueFalse, multipleChoice, written }
+      }),
+    }),
   }),
 });
 
-export const { useGetAllDecksQuery, useNewDeckMutation, useEditDeckMutation, useDeleteDeckMutation } =
-  deckApiSlice;
+export const {
+  useGetAllDecksQuery,
+  useNewDeckMutation,
+  useEditDeckMutation,
+  useDeleteDeckMutation,
+  useGetTestQuestionsMutation
+} = deckApiSlice;

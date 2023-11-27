@@ -68,3 +68,36 @@ type EditCardRequest = {
   frontText: string;
   backText: string;
 }
+
+enum QuestionType {
+  TRUE_FALSE = "TRUE_FALSE",
+  MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
+  WRITTEN = "WRITTEN",
+}
+
+interface Question {
+  questionText: string;
+  questionType: QuestionType;
+}
+
+interface MultipleChoiceQuestion extends Question {
+  options: string[];
+  answer: number;
+}
+
+interface TrueFalseQuestion extends Question {
+  option: string;
+  answer: boolean
+}
+
+interface WrittenQuestion extends Question {
+  answer: string;
+}
+
+type GetTestQuestionsRequest = {
+  deckId: number;
+  numQuestions: number;
+  trueFalse: boolean;
+  multipleChoice: boolean;
+  written: boolean;
+}
