@@ -13,7 +13,7 @@ const MultipleChoiceQuestion = ({
       </View>
       <View className="flex-1 space-y-2 justify-center">
         {options.map((option, i) => (
-          <TouchableOpacity className="border p-2 rounded-md">
+          <TouchableOpacity className="border px-2 py-2 rounded-md">
             <Text key={i} className="text-lg">{option}</Text>
           </TouchableOpacity>
         ))}
