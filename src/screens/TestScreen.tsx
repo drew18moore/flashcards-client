@@ -50,7 +50,7 @@ const TestScreen = () => {
     }
   };
   return (
-    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : "flex-1"}>
       <View className="bg-red-500 relative">
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -63,26 +63,26 @@ const TestScreen = () => {
         </Text>
       </View>
 
-      <View className="p-5 mt-10">
-        <View>{currentQuestion()}</View>
-        <View className="flex-row">
+      <View className="p-5 mt-10 flex-1">
+        <View className="flex-1">{currentQuestion()}</View>
+        <View className="flex-row justify-between space-x-4">
           <TouchableOpacity
             disabled={currentQuestionIndex <= 0}
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev - 1);
             }}
-            className="border px-4 py-1 rounded-md"
+            className="border py-1 rounded-md flex-grow"
           >
-            <Text className="text-lg">Prev</Text>
+            <Text className="text-lg text-center">Prev</Text>
           </TouchableOpacity>
           <TouchableOpacity
             disabled={currentQuestionIndex >= testQuestions!.length - 1}
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev + 1);
             }}
-            className="border px-4 py-1 rounded-md"
+            className="border py-1 rounded-md flex-grow"
           >
-            <Text className="text-lg">Next</Text>
+            <Text className="text-lg text-center">Next</Text>
           </TouchableOpacity>
         </View>
       </View>
