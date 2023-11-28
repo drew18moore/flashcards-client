@@ -22,9 +22,9 @@ const TestConfigScreen = () => {
   const [numQuestions, setNumQuestions] = useState(
     cards?.length.toString() || "0"
   );
-  const [hasTrueFalse, setHasTrueFalse] = useState(false);
-  const [hasMultipleChoice, setHasMultipleChoice] = useState(false);
-  const [hasWritten, setHasWritten] = useState(false);
+  const [hasTrueFalse, setHasTrueFalse] = useState(true);
+  const [hasMultipleChoice, setHasMultipleChoice] = useState(true);
+  const [hasWritten, setHasWritten] = useState(true);
 
   const dispatch = useDispatch();
   const [getTestQuestions] = useGetTestQuestionsMutation();
@@ -112,10 +112,10 @@ const TestConfigScreen = () => {
           />
         </View>
         <TouchableOpacity
-          disabled={numQuestions === ""}
+          disabled={numQuestions === "" || (!hasTrueFalse && !hasMultipleChoice && !hasWritten)}
           onPress={onSubmit}
           className={`${
-            numQuestions === "" ? "bg-gray-400" : "bg-blue-600"
+            numQuestions === "" || (!hasTrueFalse && !hasMultipleChoice && !hasWritten) ? "bg-gray-400" : "bg-blue-600"
           } py-3 rounded-md`}
         >
           <Text className="text-white text-center">Start Test</Text>
