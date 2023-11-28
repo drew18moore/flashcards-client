@@ -63,7 +63,7 @@ const TestScreen = () => {
         </Text>
       </View>
 
-      <View className="p-5 mt-10 flex-1">
+      <View className="p-5 mt-10 flex-1 space-y-2">
         <View className="flex-1">{currentQuestion()}</View>
         <View className="flex-row justify-between space-x-4">
           <TouchableOpacity
