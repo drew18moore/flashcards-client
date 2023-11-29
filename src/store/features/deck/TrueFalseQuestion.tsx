@@ -9,9 +9,9 @@ const TrueFalseQuestion = ({
   return (
     <View className="flex-1">
       <View className="border p-2 rounded-md h-1/2 justify-center">
-        <Text className="text-lg">{questionText}</Text>
+        <Text className="text-lg text-center">{questionText}</Text>
         <View className="border-b-[1px]" />
-        <Text className="text-lg">{option}</Text>
+        <Text className="text-lg text-center">{option}</Text>
       </View>
       <View className="flex-1 space-y-2 justify-center">
         <TouchableOpacity className="border px-2 py-4 rounded-md">
