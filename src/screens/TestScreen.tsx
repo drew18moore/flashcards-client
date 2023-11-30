@@ -74,19 +74,31 @@ const TestScreen = () => {
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev - 1);
             }}
-            className="border py-1 rounded-md flex-grow"
+            className="border py-1 rounded-md flex-1"
           >
             <Text className="text-lg text-center">Prev</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {currentQuestionIndex >= testQuestions!.length - 1 ? (
+            <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("test-submit")
+            }}
+            className="border py-1 rounded-md flex-1"
+          >
+            <Text className="text-lg text-center">Submit</Text>
+          </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
             disabled={currentQuestionIndex >= testQuestions!.length - 1}
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev + 1);
             }}
-            className="border py-1 rounded-md flex-grow"
+            className="border py-1 rounded-md flex-1"
           >
             <Text className="text-lg text-center">Next</Text>
           </TouchableOpacity>
+          ) }
+          
         </View>
       </View>
     </SafeAreaView>
