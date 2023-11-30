@@ -84,9 +84,9 @@ const TestScreen = () => {
             onPress={() => {
               navigation.navigate("test-submit")
             }}
-            className="border py-1 rounded-md flex-1"
+            className="border py-1 rounded-md flex-1 bg-blue-600 border-blue-600"
           >
-            <Text className="text-lg text-center">Submit</Text>
+            <Text className="text-lg text-center text-white">Submit</Text>
           </TouchableOpacity>
           ) : (
             <TouchableOpacity
