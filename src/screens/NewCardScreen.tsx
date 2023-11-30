@@ -18,7 +18,6 @@ const NewCardScreen = () => {
   const [newCard] = useNewCardMutation();
 
   const onSubmit = async () => {
-    console.log(frontText, backText);
     await newCard({ deckId: id, frontText: frontText.trim(), backText: backText.trim() });
     setFrontText("");
     setBackText("");

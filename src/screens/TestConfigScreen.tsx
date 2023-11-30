@@ -30,7 +30,6 @@ const TestConfigScreen = () => {
   const [getTestQuestions] = useGetTestQuestionsMutation();
 
   const onNumChange = (value: string) => {
-    console.log(value);
     if (value.match(/^([1-9]\d*|)$/)) {
       if (value === "" || parseInt(value) <= cards!.length)
         setNumQuestions(value);
@@ -38,8 +37,6 @@ const TestConfigScreen = () => {
   };
 
   const onSubmit = async () => {
-    console.log(numQuestions, hasTrueFalse, hasMultipleChoice, hasWritten);
-
     try {
       const res = await getTestQuestions({
         deckId: id,
@@ -48,7 +45,6 @@ const TestConfigScreen = () => {
         trueFalse: hasTrueFalse,
         written: hasWritten,
       }).unwrap();
-      console.log(res);
       dispatch(setTestQuestions({ questions: res }))
 
       navigation.navigate("test");
