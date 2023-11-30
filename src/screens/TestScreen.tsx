@@ -22,6 +22,7 @@ const TestScreen = () => {
       const formattedQuestion = question as TrueFalseQuestion;
       return (
         <TrueFalseQuestion
+          index={currentQuestionIndex}
           questionText={formattedQuestion.questionText}
           option={formattedQuestion.option}
           answer={formattedQuestion.answer}
@@ -32,6 +33,7 @@ const TestScreen = () => {
       const formattedQuestion = question as MultipleChoiceQuestion;
       return (
         <MultipleChoiceQuestion
+          index={currentQuestionIndex}
           questionText={formattedQuestion.questionText}
           options={formattedQuestion.options}
           answer={formattedQuestion.answer}
@@ -42,6 +44,7 @@ const TestScreen = () => {
       const formattedQuestion = question as WrittenQuestion;
       return (
         <WrittenQuestion
+          index={currentQuestionIndex}
           questionText={formattedQuestion.questionText}
           answer={formattedQuestion.answer}
           questionType={formattedQuestion.questionType}

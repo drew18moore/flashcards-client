@@ -2,7 +2,11 @@ import { View, Text } from "react-native";
 import React, { useState } from "react";
 import { TextInput } from "react-native";
 
-const WrittenQuestion = ({ questionText, answer }: WrittenQuestion) => {
+const WrittenQuestion = ({
+  index,
+  questionText,
+  answer,
+}: WrittenQuestion & { index: number }) => {
   const [value, setValue] = useState("");
   return (
     <View className="flex-1">

@@ -101,3 +101,8 @@ type GetTestQuestionsRequest = {
   multipleChoice: boolean;
   written: boolean;
 }
+
+type Answer = {
+  questionIndex: number;
+  response: string | boolean | number
+}

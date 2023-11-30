@@ -1,11 +1,15 @@
 import { View, Text, TouchableOpacity } from "react-native";
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAnswerResponseByQuestionId, submitAnswer } from "./testSlice";
 
 const TrueFalseQuestion = ({
+  index,
   questionText,
   option,
   answer,
-}: TrueFalseQuestion) => {
+}: TrueFalseQuestion & { index: number }) => {
+  const dispatch = useDispatch();
+  const response = useSelector(selectAnswerResponseByQuestionId(index));
   return (
     <View className="flex-1">
       <View className="border p-2 rounded-md h-1/2 justify-center">
@@ -14,11 +18,27 @@ const TrueFalseQuestion = ({
         <Text className="text-lg text-center">{option}</Text>
       </View>
       <View className="flex-1 space-y-2 justify-center">
-        <TouchableOpacity className="border px-2 py-4 rounded-md">
-          <Text className="text-lg">True</Text>
+        <TouchableOpacity
+          onPress={() => dispatch(submitAnswer({ questionIndex: index, response: true }))}
+          className={`border px-2 py-4 rounded-md ${
+            response ? "border-blue-600" : ""
+          }`}
+        >
+          <Text className={`text-lg ${response ? "text-blue-600" : ""}`}>
+            True
+          </Text>
         </TouchableOpacity>
-        <TouchableOpacity className="border p-2 py-4 rounded-md">
-          <Text className="text-lg">False</Text>
+        <TouchableOpacity
+          onPress={() => dispatch(submitAnswer({ questionIndex: index, response: false }))}
+          className={`border p-2 py-4 rounded-md ${
+            response === false ? "border-blue-600" : ""
+          }`}
+        >
+          <Text
+            className={`text-lg ${response === false ? "text-blue-600" : ""}`}
+          >
+            False
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
