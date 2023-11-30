@@ -1,4 +1,4 @@
-import { View, Text, Platform } from "react-native";
+import { View, Text, Platform, TouchableOpacity } from "react-native";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
@@ -6,8 +6,12 @@ import {
   selectTestAnswers,
   selectTestQuestions,
 } from "../store/features/deck/testSlice";
+import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TestSubmitScreen = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const questions = useSelector(selectTestQuestions);
   const answers = useSelector(selectTestAnswers);
   const [numCorrectAnswers, setNumCorrectAnswers] = useState<number>();
@@ -31,7 +35,14 @@ const TestSubmitScreen = () => {
 
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : "flex-1"}>
-      <Text>TestSubmitScreen</Text>
+      <View>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          className="self-start mx-2 p-2 "
+        >
+          <MaterialCommunityIcons name="close" size={25} />
+        </TouchableOpacity>
+      </View>
       <Text>{(numCorrectAnswers! / questions!.length) * 100}%</Text>
     </SafeAreaView>
   );
