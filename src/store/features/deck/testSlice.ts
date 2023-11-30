@@ -8,6 +8,7 @@ export const testSlice = createSlice({
     setTestQuestions: (state, action) => {
       const { questions } = action.payload;
       state.questions = questions;
+      state.answers = []
     },
     submitAnswer: (state, action) => {
       const { questionIndex, response } = action.payload;

@@ -16,9 +16,6 @@ const TestScreen = () => {
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  const res = useSelector(selectTestAnswers);
-  console.log(res);
-
   const currentQuestion = () => {
     const question = testQuestions![currentQuestionIndex];
     if (question.questionType === "TRUE_FALSE") {
