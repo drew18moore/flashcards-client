@@ -27,7 +27,8 @@ const TestSubmitScreen = () => {
         if (question.answer === answers[i].response) correctAnswers++;
       } else if (questions[i].questionType === "WRITTEN") {
         const question = questions[i] as WrittenQuestion;
-        if (question.answer === answers[i].response) correctAnswers++;
+        const response = answers[i].response as string
+        if (question.answer.trim().toLowerCase() === response.trim().toLowerCase()) correctAnswers++;
       }
     }
     setNumCorrectAnswers(correctAnswers);
