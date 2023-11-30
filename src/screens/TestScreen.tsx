@@ -2,7 +2,7 @@ import { View, Text, Platform, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
-import { selectTestQuestions } from "../store/features/deck/testSlice";
+import { selectTestAnswers, selectTestQuestions } from "../store/features/deck/testSlice";
 import TrueFalseQuestion from "../store/features/deck/TrueFalseQuestion";
 import MultipleChoiceQuestion from "../store/features/deck/MultipleChoiceQuestion";
 import WrittenQuestion from "../store/features/deck/WrittenQuestion";
@@ -15,6 +15,9 @@ const TestScreen = () => {
   const testQuestions = useSelector(selectTestQuestions);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+
+  const res = useSelector(selectTestAnswers);
+  console.log(res);
 
   const currentQuestion = () => {
     const question = testQuestions![currentQuestionIndex];
