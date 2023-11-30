@@ -43,7 +43,32 @@ const TestSubmitScreen = () => {
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
       </View>
-      <Text>{(numCorrectAnswers! / questions!.length) * 100}%</Text>
+      <View className="px-5">
+        <Text className="text-lg font-bold">Your results</Text>
+        <View className="flex-row items-center space-x-4">
+          <Text className="text-3xl font-bold p-2">
+            {(numCorrectAnswers! / questions!.length) * 100}%
+          </Text>
+          <View className="flex-1 space-y-2">
+            <View className="flex-row items-center justify-between">
+              <Text className="font-bold text-green-700">Correct</Text>
+              <View className="border border-green-700 rounded-full h-5 w-5 items-center justify-center">
+                <Text className="font-bold text-green-700">
+                  {numCorrectAnswers}
+                </Text>
+              </View>
+            </View>
+            <View className="flex-row items-center justify-between">
+              <Text className="font-bold text-red-700">Incorrect</Text>
+              <View className="border border-red-700 rounded-full h-5 w-5 items-center justify-center">
+                <Text className="font-bold text-red-700">
+                  {questions!.length - numCorrectAnswers!}
+                </Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 };
