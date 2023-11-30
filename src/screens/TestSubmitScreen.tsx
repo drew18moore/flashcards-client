@@ -27,8 +27,11 @@ const TestSubmitScreen = () => {
         if (question.answer === answers[i].response) correctAnswers++;
       } else if (questions[i].questionType === "WRITTEN") {
         const question = questions[i] as WrittenQuestion;
-        const response = answers[i].response as string
-        if (question.answer.trim().toLowerCase() === response.trim().toLowerCase()) correctAnswers++;
+        const response = answers[i].response as string;
+        if (
+          question.answer.trim().toLowerCase() === response.trim().toLowerCase()
+        )
+          correctAnswers++;
       }
     }
     setNumCorrectAnswers(correctAnswers);
@@ -45,28 +48,55 @@ const TestSubmitScreen = () => {
         </TouchableOpacity>
       </View>
       <View className="px-5">
-        <Text className="text-lg font-bold">Your results</Text>
-        <View className="flex-row items-center space-x-4">
-          <Text className="text-3xl font-bold p-2">
-            {(numCorrectAnswers! / questions!.length) * 100}%
-          </Text>
-          <View className="flex-1 space-y-2">
-            <View className="flex-row items-center justify-between">
-              <Text className="font-bold text-green-700">Correct</Text>
-              <View className="border border-green-700 rounded-full h-5 w-5 items-center justify-center">
-                <Text className="font-bold text-green-700">
-                  {numCorrectAnswers}
-                </Text>
+        <View>
+          <Text className="text-lg font-bold">Your results</Text>
+          <View className="flex-row items-center space-x-4 py-4">
+            <Text className="text-3xl font-bold p-2">
+              {(numCorrectAnswers! / questions!.length) * 100}%
+            </Text>
+            <View className="flex-1 space-y-2">
+              <View className="flex-row items-center justify-between">
+                <Text className="font-bold text-green-700">Correct</Text>
+                <View className="border border-green-700 rounded-full h-5 w-5 items-center justify-center">
+                  <Text className="font-bold text-green-700">
+                    {numCorrectAnswers}
+                  </Text>
+                </View>
+              </View>
+              <View className="flex-row items-center justify-between">
+                <Text className="font-bold text-red-700">Incorrect</Text>
+                <View className="border border-red-700 rounded-full h-5 w-5 items-center justify-center">
+                  <Text className="font-bold text-red-700">
+                    {questions!.length - numCorrectAnswers!}
+                  </Text>
+                </View>
               </View>
             </View>
-            <View className="flex-row items-center justify-between">
-              <Text className="font-bold text-red-700">Incorrect</Text>
-              <View className="border border-red-700 rounded-full h-5 w-5 items-center justify-center">
-                <Text className="font-bold text-red-700">
-                  {questions!.length - numCorrectAnswers!}
-                </Text>
+          </View>
+        </View>
+        <View className="space-y-1">
+          <Text className="text-lg font-bold">Next steps</Text>
+          <View className="space-y-2">
+            <TouchableOpacity className="border items-center rounded-md bg-blue-600 border-blue-600 py-3">
+            <View className="flex-row items-center space-x-3">
+                <MaterialCommunityIcons
+                  name="file-document-multiple"
+                  size={25}
+                  color="#fff"
+                />
+                <Text className="font-bold text-white">Take a new test</Text>
               </View>
-            </View>
+            </TouchableOpacity>
+            <TouchableOpacity className="border items-center rounded-md py-3">
+              <View className="flex-row items-center space-x-3">
+                <MaterialCommunityIcons
+                  name="card-multiple"
+                  size={25}
+                  color="#2563EB"
+                />
+                <Text className="font-bold">Study flashcards</Text>
+              </View>
+            </TouchableOpacity>
           </View>
         </View>
       </View>
