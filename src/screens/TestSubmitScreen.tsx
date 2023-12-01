@@ -21,17 +21,22 @@ const TestSubmitScreen = () => {
     for (let i in questions!) {
       if (questions[i].questionType === "TRUE_FALSE") {
         const question = questions[i] as TrueFalseQuestion;
-        if (question.answer === answers[i].response) correctAnswers++;
+        if (answers[i] && question.answer === answers[i].response)
+          correctAnswers++;
       } else if (questions[i].questionType === "MULTIPLE_CHOICE") {
         const question = questions[i] as MultipleChoiceQuestion;
-        if (question.answer === answers[i].response) correctAnswers++;
+        if (answers[i] && question.answer === answers[i].response)
+          correctAnswers++;
       } else if (questions[i].questionType === "WRITTEN") {
         const question = questions[i] as WrittenQuestion;
-        const response = answers[i].response as string;
-        if (
-          question.answer.trim().toLowerCase() === response.trim().toLowerCase()
-        )
-          correctAnswers++;
+        if (answers[i]) {
+          const response = answers[i].response as string;
+          if (
+            question.answer.trim().toLowerCase() ===
+            response.trim().toLowerCase()
+          )
+            correctAnswers++;
+        }
       }
     }
     setNumCorrectAnswers(correctAnswers);
@@ -78,7 +83,7 @@ const TestSubmitScreen = () => {
           <Text className="text-lg font-bold">Next steps</Text>
           <View className="space-y-2">
             <TouchableOpacity className="border items-center rounded-md bg-blue-600 border-blue-600 py-3">
-            <View className="flex-row items-center space-x-3">
+              <View className="flex-row items-center space-x-3">
                 <MaterialCommunityIcons
                   name="file-document-multiple"
                   size={25}
