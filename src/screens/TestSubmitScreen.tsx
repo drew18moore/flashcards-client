@@ -102,7 +102,7 @@ const TestSubmitScreen = () => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-
+                navigation.replace("flashcards", { id })
               }}
               className="border items-center rounded-md py-3"
             >
