@@ -63,13 +63,13 @@ const CardBottomSheet = ({ id, deckId, open, setOpen }: Props) => {
             <View className="flex-row items-center justify-center space-x-4">
               <TouchableOpacity
                 onPress={() => setShowDeleteModal(false)}
-                className="border rounded-md px-2 py-1"
+                className="border rounded-md flex-grow items-center py-2"
               >
                 <Text className="text-lg">Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={onDelete}
-                className="border rounded-md px-2 py-1 border-red-500 bg-red-500"
+                className="border rounded-md flex-grow items-center py-2 border-red-500 bg-red-500"
               >
                 <Text className="text-white text-lg">Delete</Text>
               </TouchableOpacity>

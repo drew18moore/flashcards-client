@@ -122,7 +122,7 @@ const TestConfigScreen = () => {
             (!hasTrueFalse && !hasMultipleChoice && !hasWritten)
               ? "bg-gray-400"
               : "bg-blue-600"
-          } py-3 rounded-md`}
+          } py-4 rounded-md`}
         >
           <Text className="text-white text-center">Start Test</Text>
         </TouchableOpacity>

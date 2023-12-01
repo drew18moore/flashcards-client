@@ -78,7 +78,7 @@ const TestScreen = () => {
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev - 1);
             }}
-            className={`border py-1 rounded-md flex-1 ${currentQuestionIndex === 0 ? "border-gray-400" : ""}`}
+            className={`border py-3 rounded-md flex-1 ${currentQuestionIndex === 0 ? "border-gray-400" : ""}`}
           >
             <Text className={`text-lg text-center ${currentQuestionIndex === 0 ? "text-gray-400" : ""}`}>Prev</Text>
           </TouchableOpacity>
@@ -87,7 +87,7 @@ const TestScreen = () => {
             onPress={() => {
               navigation.replace("test-submit", { id })
             }}
-            className="border py-1 rounded-md flex-1 bg-blue-600 border-blue-600"
+            className="border py-3 rounded-md flex-1 bg-blue-600 border-blue-600"
           >
             <Text className="text-lg text-center text-white">Submit</Text>
           </TouchableOpacity>
@@ -97,7 +97,7 @@ const TestScreen = () => {
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev + 1);
             }}
-            className="border py-1 rounded-md flex-1"
+            className="border py-3 rounded-md flex-1"
           >
             <Text className="text-lg text-center">Next</Text>
           </TouchableOpacity>
@@ -118,7 +118,7 @@ const TestScreen = () => {
             <View className="flex-row items-center justify-center space-x-4">
               <TouchableOpacity
                 onPress={() => setShowModal(false)}
-                className="border rounded-md flex-1 py-1"
+                className="border rounded-md flex-1 py-2"
               >
                 <Text className="text-lg text-center">Cancel</Text>
               </TouchableOpacity>
@@ -126,7 +126,7 @@ const TestScreen = () => {
                 onPress={() => {
                   navigation.goBack();
                 }}
-                className="border rounded-md flex-1 py-1 border-blue-600 bg-blue-600"
+                className="border rounded-md flex-1 py-2 border-blue-600 bg-blue-600"
               >
                 <Text className="text-white text-lg text-center">Yes</Text>
               </TouchableOpacity>

@@ -9,7 +9,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 const ProfileScreen = () => {
   const user = useSelector(selectCurrentUser);
-
+  console.log(user);
   const formattedDate = new Date(user!.createdAt).toLocaleDateString("en-US", {
     month: "long",
     year: "numeric",
