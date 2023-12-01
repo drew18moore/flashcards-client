@@ -59,7 +59,7 @@ const DeckScreen = () => {
         </TouchableOpacity>
       </View>
       <ScrollView className="h-full">
-        <View className="mx-6 mt-2 space-y-3">
+        <View className="mx-6 mt-2 space-y-3 pb-11">
           <View className="space-y-1">
             <View>
               <Text className="text-lg font-bold">{deck?.name}</Text>
