@@ -57,8 +57,8 @@ const TestScreen = () => {
     }
   };
   return (
-    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : "flex-1"}>
-      <View className="bg-red-500 relative">
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6 flex-1" : ""}>
+      <View className="relative">
         <TouchableOpacity
           onPress={() => setShowModal(true)}
           className="self-start mx-2 p-2 absolute z-10 left-0"
