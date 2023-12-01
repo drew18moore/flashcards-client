@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Pressable } from "react-native";
+import { View, Text, TouchableOpacity, Pressable, Platform } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ParamListBase, useNavigation } from "@react-navigation/native";
@@ -21,7 +21,7 @@ const FlashcardsSettingsScreen = () => {
     dispatch(setFlashcardsOptions({ isFrontOrientation }))
   }
   return (
-    <SafeAreaView>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
