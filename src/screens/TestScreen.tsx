@@ -78,9 +78,9 @@ const TestScreen = () => {
             onPress={() => {
               setCurrentQuestionIndex((prev) => prev - 1);
             }}
-            className="border py-1 rounded-md flex-1"
+            className={`border py-1 rounded-md flex-1 ${currentQuestionIndex === 0 ? "border-gray-400" : ""}`}
           >
-            <Text className="text-lg text-center">Prev</Text>
+            <Text className={`text-lg text-center ${currentQuestionIndex === 0 ? "text-gray-400" : ""}`}>Prev</Text>
           </TouchableOpacity>
           {currentQuestionIndex >= testQuestions!.length - 1 ? (
             <TouchableOpacity

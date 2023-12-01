@@ -75,24 +75,24 @@ const DeckScreen = () => {
                 disabled={cards?.length === 0}
                 onPress={() => navigation.navigate("flashcards", { id })}
                 className={`flex-row border p-3 rounded-md items-center space-x-3 ${
-                  cards?.length === 0 ? "border-gray-500" : ""
+                  cards?.length === 0 ? "border-gray-400" : ""
                 }`}
               >
                 <MaterialCommunityIcons
                   name="card-multiple"
                   size={25}
-                  color={`${cards?.length === 0 ? "#6B7280" : "#2563EB"}`}
+                  color={`${cards?.length === 0 ? "#9CA3AF" : "#2563EB"}`}
                 />
                 <View>
                   <Text
                     className={`font-bold ${
-                      cards?.length === 0 ? "text-gray-500" : ""
+                      cards?.length === 0 ? "text-gray-400" : ""
                     }`}
                   >
                     Flashcards
                   </Text>
                   <Text
-                    className={`${cards?.length === 0 ? "text-gray-500" : ""}`}
+                    className={`${cards?.length === 0 ? "text-gray-400" : ""}`}
                   >
                     Review terms an definitions
                   </Text>
@@ -102,24 +102,24 @@ const DeckScreen = () => {
               disabled={cards?.length === 0}
                 onPress={() => navigation.navigate("test-config", { id })}
                 className={`flex-row border p-3 rounded-md items-center space-x-3 ${
-                  cards?.length === 0 ? "border-gray-500" : ""
+                  cards?.length === 0 ? "border-gray-400" : ""
                 }`}
               >
                 <MaterialCommunityIcons
                   name="file-document-multiple"
                   size={25}
-                  color={`${cards?.length === 0 ? "#6B7280" : "#2563EB"}`}
+                  color={`${cards?.length === 0 ? "#9CA3AF" : "#2563EB"}`}
                 />
                 <View>
                   <Text
                     className={`font-bold ${
-                      cards?.length === 0 ? "text-gray-500" : ""
+                      cards?.length === 0 ? "text-gray-400" : ""
                     }`}
                   >
                     Test
                   </Text>
                   <Text
-                    className={`${cards?.length === 0 ? "text-gray-500" : ""}`}
+                    className={`${cards?.length === 0 ? "text-gray-400" : ""}`}
                   >
                     Take a practice test
                   </Text>
