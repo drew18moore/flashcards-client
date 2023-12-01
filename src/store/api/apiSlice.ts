@@ -5,8 +5,8 @@ import { Platform } from "react-native";
 const baseQuery = fetchBaseQuery({
   baseUrl:
     Platform.OS === "android"
-      ? "http://192.168.1.26:8080/api/v1"
-      : "http://192.168.1.26:8080/api/v1",
+      ? process.env.EXPO_PUBLIC_BASE_URL_ANDROID
+      : process.env.EXPO_PUBLIC_BASE_URL,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
