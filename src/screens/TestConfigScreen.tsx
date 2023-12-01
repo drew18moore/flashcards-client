@@ -1,6 +1,10 @@
 import { View, Text, TouchableOpacity, Platform } from "react-native";
 import React, { useState } from "react";
-import { ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
+import {
+  ParamListBase,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native";
@@ -45,9 +49,9 @@ const TestConfigScreen = () => {
         trueFalse: hasTrueFalse,
         written: hasWritten,
       }).unwrap();
-      dispatch(setTestQuestions({ questions: res }))
+      dispatch(setTestQuestions({ questions: res }));
 
-      navigation.navigate("test");
+      navigation.replace("test", { id });
     } catch (err) {
       console.error(err);
     }
@@ -108,10 +112,16 @@ const TestConfigScreen = () => {
           />
         </View>
         <TouchableOpacity
-          disabled={numQuestions === "" || (!hasTrueFalse && !hasMultipleChoice && !hasWritten)}
+          disabled={
+            numQuestions === "" ||
+            (!hasTrueFalse && !hasMultipleChoice && !hasWritten)
+          }
           onPress={onSubmit}
           className={`${
-            numQuestions === "" || (!hasTrueFalse && !hasMultipleChoice && !hasWritten) ? "bg-gray-400" : "bg-blue-600"
+            numQuestions === "" ||
+            (!hasTrueFalse && !hasMultipleChoice && !hasWritten)
+              ? "bg-gray-400"
+              : "bg-blue-600"
           } py-3 rounded-md`}
         >
           <Text className="text-white text-center">Start Test</Text>

@@ -6,11 +6,14 @@ import {
   selectTestAnswers,
   selectTestQuestions,
 } from "../store/features/deck/testSlice";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const TestSubmitScreen = () => {
+  const {
+    params: { id },
+  } = useRoute<any>();
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const questions = useSelector(selectTestQuestions);
   const answers = useSelector(selectTestAnswers);
@@ -82,7 +85,12 @@ const TestSubmitScreen = () => {
         <View className="space-y-1">
           <Text className="text-lg font-bold">Next steps</Text>
           <View className="space-y-2">
-            <TouchableOpacity className="border items-center rounded-md bg-blue-600 border-blue-600 py-3">
+            <TouchableOpacity
+              onPress={() => {
+                navigation.replace("test-config", { id })
+              }}
+              className="border items-center rounded-md bg-blue-600 border-blue-600 py-3"
+            >
               <View className="flex-row items-center space-x-3">
                 <MaterialCommunityIcons
                   name="file-document-multiple"
@@ -92,7 +100,12 @@ const TestSubmitScreen = () => {
                 <Text className="font-bold text-white">Take a new test</Text>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity className="border items-center rounded-md py-3">
+            <TouchableOpacity
+              onPress={() => {
+
+              }}
+              className="border items-center rounded-md py-3"
+            >
               <View className="flex-row items-center space-x-3">
                 <MaterialCommunityIcons
                   name="card-multiple"

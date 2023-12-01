@@ -7,10 +7,13 @@ import TrueFalseQuestion from "../store/features/deck/TrueFalseQuestion";
 import MultipleChoiceQuestion from "../store/features/deck/MultipleChoiceQuestion";
 import WrittenQuestion from "../store/features/deck/WrittenQuestion";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { ParamListBase, useNavigation } from "@react-navigation/native";
+import { ParamListBase, useNavigation, useRoute } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 const TestScreen = () => {
+  const {
+    params: { id },
+  } = useRoute<any>();
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
   const testQuestions = useSelector(selectTestQuestions);
 
@@ -82,7 +85,7 @@ const TestScreen = () => {
           {currentQuestionIndex >= testQuestions!.length - 1 ? (
             <TouchableOpacity
             onPress={() => {
-              navigation.replace("test-submit")
+              navigation.replace("test-submit", { id })
             }}
             className="border py-1 rounded-md flex-1 bg-blue-600 border-blue-600"
           >
