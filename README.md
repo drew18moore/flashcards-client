@@ -16,6 +16,7 @@ The front-end for a flashcards mobile app for iOS and Android
 - Create, edit, or delete decks
 - Create, edit, or delete cards in a deck
 - Study your flashcards
+- Create custom tests to test your knowledge
 
 ## Getting Started
 ### Prerequisites
