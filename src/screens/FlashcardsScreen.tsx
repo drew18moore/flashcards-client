@@ -33,7 +33,7 @@ const FlashcardsScreen = () => {
   const { isFrontOrientation } = useSelector(selectFlashcardsOptions);
 
   return (
-    <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
+    <SafeAreaView className={Platform.OS === "android" ? "pt-6 flex-1" : "flex-1"}>
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
@@ -59,7 +59,7 @@ const FlashcardsScreen = () => {
         sliderWidth={width}
         itemWidth={width * 0.9}
         contentContainerCustomStyle={{ paddingVertical: 16 }}
-        slideStyle={{ marginBottom: 40 }}
+        slideStyle={{ marginVertical: 40 }}
         onScrollIndexChanged={(index) => {
           setCurrentIndex(index)
         }}
