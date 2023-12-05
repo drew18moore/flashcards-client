@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, Platform } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -16,7 +22,7 @@ const SignupScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const [signup] = useSignupMutation();
+  const [signup, { isLoading }] = useSignupMutation();
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -114,9 +120,13 @@ const SignupScreen = () => {
           </View>
           <TouchableOpacity
             onPress={onSignup}
-            className="bg-blue-600 p-3 items-center rounded-md"
+            className="bg-blue-600 p-3 items-center rounded-md h-[52px] justify-center"
           >
-            <Text className="text-lg text-white/90 font-bold">Sign Up</Text>
+            {isLoading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text className="text-lg text-white/90 font-bold">Sign Up</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>

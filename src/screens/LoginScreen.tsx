@@ -4,6 +4,7 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import { useLoginMutation } from "../store/features/auth/authApiSlice";
@@ -19,7 +20,7 @@ export default function LoginScreen() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
 
   const navigation = useNavigation();
@@ -91,9 +92,13 @@ export default function LoginScreen() {
           </View>
           <TouchableOpacity
             onPress={onLogin}
-            className="bg-blue-600 p-3 items-center rounded-md"
+            className="bg-blue-600 p-3 items-center rounded-md h-[52px] justify-center"
           >
-            <Text className="text-lg text-white/90 font-bold">Log In</Text>
+            {isLoading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text className="text-lg text-white/90 font-bold">Log In</Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>

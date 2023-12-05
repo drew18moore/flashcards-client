@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "flashcards-client",
-    "slug": "flashcards-client",
+    "name": "Flashcards",
+    "slug": "flashcards",
+    "description": "Memorize anything by creating flashcards.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +26,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "87832b29-2b92-4b7d-9fd0-dd5d37ae25ec"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/87832b29-2b92-4b7d-9fd0-dd5d37ae25ec"
     }
   }
 }
