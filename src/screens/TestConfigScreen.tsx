@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, Platform } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Platform,
+  ActivityIndicator,
+} from "react-native";
 import React, { useState } from "react";
 import {
   ParamListBase,
@@ -31,7 +37,7 @@ const TestConfigScreen = () => {
   const [hasWritten, setHasWritten] = useState(true);
 
   const dispatch = useDispatch();
-  const [getTestQuestions] = useGetTestQuestionsMutation();
+  const [getTestQuestions, { isLoading }] = useGetTestQuestionsMutation();
 
   const onNumChange = (value: string) => {
     if (value.match(/^([1-9]\d*|)$/)) {
@@ -122,9 +128,13 @@ const TestConfigScreen = () => {
             (!hasTrueFalse && !hasMultipleChoice && !hasWritten)
               ? "bg-gray-400"
               : "bg-blue-600"
-          } py-4 rounded-md`}
+          } py-4 rounded-md h-[52px] justify-center`}
         >
-          <Text className="text-white text-center">Start Test</Text>
+          {isLoading ? (
+            <ActivityIndicator color="#fff" />
+          ) : (
+            <Text className="text-white text-center">Start Test</Text>
+          )}
         </TouchableOpacity>
       </View>
     </SafeAreaView>
