@@ -1,4 +1,4 @@
-import { Platform, RefreshControl, ScrollView, Text, View } from "react-native";
+import { ActivityIndicator, Platform, RefreshControl, ScrollView, Text, View } from "react-native";
 import React from "react";
 import { useGetAllDecksQuery } from "../store/features/deck/deckSlice";
 import Deck from "../store/features/deck/Deck";
@@ -8,7 +8,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function DecksScreen() {
-  const { data: decks, refetch } = useGetAllDecksQuery();
+  const { data: decks, refetch, isLoading } = useGetAllDecksQuery();
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -32,17 +32,21 @@ export default function DecksScreen() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        {decks?.map((deck) => (
-          <Deck
-            key={deck.id}
-            id={deck.id}
-            userId={deck.userId}
-            name={deck.name}
-            isPrivate={deck.isPrivate}
-            createdAt={deck.createdAt}
-            numCards={deck.numCards}
-          />
-        ))}
+        {isLoading ? (
+          <ActivityIndicator />
+        ) : (
+          decks?.map((deck) => (
+            <Deck
+              key={deck.id}
+              id={deck.id}
+              userId={deck.userId}
+              name={deck.name}
+              isPrivate={deck.isPrivate}
+              createdAt={deck.createdAt}
+              numCards={deck.numCards}
+            />
+          ))
+        )}
       </ScrollView>
     </SafeAreaView>
   );

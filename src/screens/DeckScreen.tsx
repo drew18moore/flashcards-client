@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
+  ActivityIndicator,
 } from "react-native";
 import React, { useState } from "react";
 import {
@@ -29,7 +30,7 @@ const DeckScreen = () => {
   const { data: decks } = useGetAllDecksQuery();
   const deck = decks?.filter((deck) => deck.id === id)[0];
 
-  const { data: cards } = useGetAllCardsInDeckQuery(id);
+  const { data: cards, isLoading } = useGetAllCardsInDeckQuery(id);
 
   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
 
@@ -99,7 +100,7 @@ const DeckScreen = () => {
                 </View>
               </TouchableOpacity>
               <TouchableOpacity
-              disabled={cards?.length === 0}
+                disabled={cards?.length === 0}
                 onPress={() => navigation.navigate("test-config", { id })}
                 className={`flex-row border p-3 rounded-md items-center space-x-3 ${
                   cards?.length === 0 ? "border-gray-400" : ""
@@ -131,19 +132,23 @@ const DeckScreen = () => {
           <View className="space-y-1">
             <Text className="font-bold">Cards</Text>
             <View style={{ rowGap: 5, paddingBottom: 60 }}>
-              {cards?.map((card) => (
-                <Card
-                  key={card.id}
-                  id={card.id}
-                  userId={card.userId}
-                  deckId={card.deckId}
-                  frontText={card.frontText}
-                  backText={card.backText}
-                  createdAt={card.createdAt}
-                  setOpenCardBottomSheet={setOpenCardBottomSheet}
-                  setCardId={setCardId}
-                />
-              ))}
+              {isLoading ? (
+                <ActivityIndicator />
+              ) : (
+                cards?.map((card) => (
+                  <Card
+                    key={card.id}
+                    id={card.id}
+                    userId={card.userId}
+                    deckId={card.deckId}
+                    frontText={card.frontText}
+                    backText={card.backText}
+                    createdAt={card.createdAt}
+                    setOpenCardBottomSheet={setOpenCardBottomSheet}
+                    setCardId={setCardId}
+                  />
+                ))
+              )}
             </View>
           </View>
         </View>
