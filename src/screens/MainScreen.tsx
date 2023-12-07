@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import DecksScreen from "./DecksScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ProfileScreen from "./ProfileScreen";
+import ExploreScreen from "./ExploreScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,6 +17,21 @@ const MainScreen = () => {
           tabBarIcon: ({ focused }) => (
             <MaterialCommunityIcons
               name="card-multiple"
+              size={20}
+              color={focused ? "#2563EB" : "gray"}
+            />
+          ),
+          tabBarLabelStyle: { fontWeight: "bold" },
+          headerShown: false
+        }}
+      />
+      <Tab.Screen
+        name="Explore"
+        component={ExploreScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <MaterialCommunityIcons
+              name="magnify"
               size={20}
               color={focused ? "#2563EB" : "gray"}
             />
