@@ -106,3 +106,8 @@ type Answer = {
   questionIndex: number;
   response: string | boolean | number
 }
+
+type Search = {
+  decks: Deck[];
+  users: User[];
+}
