@@ -4,6 +4,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useGetSearchQuery } from "../store/features/search/searchSlice";
+import SearchDeck from "../store/features/search/SearchDeck";
+import SearchUser from "../store/features/search/SearchUser";
 
 const ExploreScreen = () => {
   const [query, setQuery] = useState("");
@@ -26,6 +28,22 @@ const ExploreScreen = () => {
           />
         </View>
         <ScrollView className="h-full">
+          <View>
+            <Text className="text-lg">Decks</Text>
+            <View>
+              {data?.decks.map((deck) => (
+                <SearchDeck key={deck.id} {...deck} />
+              ))}
+            </View>
+          </View>
+          <View>
+            <Text className="text-lg">Users</Text>
+            <View>
+              {data?.users.map((user) => (
+                <SearchUser key={user.id} {...user} />
+              ))}
+            </View>
+          </View>
           <Text>{JSON.stringify(data)}</Text>
         </ScrollView>
       </View>
