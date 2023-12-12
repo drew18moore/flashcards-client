@@ -18,6 +18,7 @@ import FlashcardsSettingsScreen from "../screens/FlashcardsSettingsScreen";
 import TestConfigScreen from "../screens/TestConfigScreen";
 import TestScreen from "../screens/TestScreen";
 import TestSubmitScreen from "../screens/TestSubmitScreen";
+import UserDeckScreen from "../screens/UserDeckScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,7 @@ export default function Navigation() {
             <Stack.Screen name="test-config" component={TestConfigScreen} />
             <Stack.Screen name="test" component={TestScreen} />
             <Stack.Screen name="test-submit" component={TestSubmitScreen} />
+            <Stack.Screen name="user-deck" component={UserDeckScreen} />
           </Stack.Group>
         )}
       </Stack.Navigator>

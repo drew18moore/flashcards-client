@@ -3,8 +3,8 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 
 type Props = Card & {
-  setOpenCardBottomSheet: React.Dispatch<React.SetStateAction<boolean>>;
-  setCardId: React.Dispatch<React.SetStateAction<number>>;
+  setOpenCardBottomSheet?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCardId?: React.Dispatch<React.SetStateAction<number>>;
 };
 
 const Card = ({
@@ -20,15 +20,17 @@ const Card = ({
         <Text className="font-medium">{frontText}</Text>
         <Text className="text-gray-600 font-medium">{backText}</Text>
       </View>
-      <TouchableOpacity
-        onPress={() => {
-          setCardId(id);
-          setOpenCardBottomSheet(true);
-        }}
-        className="p-0"
-      >
-        <MaterialCommunityIcons name="dots-vertical" size={25} />
-      </TouchableOpacity>
+      {setOpenCardBottomSheet && setCardId && (
+        <TouchableOpacity
+          onPress={() => {
+            setCardId(id);
+            setOpenCardBottomSheet(true);
+          }}
+          className="p-0"
+        >
+          <MaterialCommunityIcons name="dots-vertical" size={25} />
+        </TouchableOpacity>
+      )}
     </View>
   );
 };
