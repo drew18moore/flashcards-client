@@ -31,22 +31,12 @@ const UserDeckScreen = () => {
 
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
-      <View className="absolute z-10 bottom-20 right-6">
-        <FloatingPlusButton
-          onPress={() => navigation.navigate("new-card", { id })}
-        />
-      </View>
-      <View className="flex-row justify-between">
+      <View className="flex-row">
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           className="self-start mx-3 p-2"
         >
           <MaterialCommunityIcons name="arrow-left" size={25} />
-        </TouchableOpacity>
-        <TouchableOpacity
-          className="self-start mx-3 p-2"
-        >
-          <MaterialCommunityIcons name="dots-vertical" size={25} />
         </TouchableOpacity>
       </View>
       <ScrollView className="h-full">
