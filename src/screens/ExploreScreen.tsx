@@ -28,7 +28,10 @@ const ExploreScreen = () => {
           />
         </View>
         <ScrollView className="h-full">
-          {data?.decks && (
+          {data?.decks.length === 0 && data.users.length === 0 && (
+            <Text>No results found</Text>
+          )}
+          {data?.decks.length !== undefined && data.decks.length > 0 && (
             <View>
               <Text className="text-lg">Decks</Text>
               <View style={{ rowGap: 5 }}>
@@ -38,7 +41,7 @@ const ExploreScreen = () => {
               </View>
             </View>
           )}
-          {data?.users && (
+          {data?.users.length !== undefined && data.users.length > 0 && (
             <View>
               <Text className="text-lg">Users</Text>
               <View style={{ rowGap: 5 }}>
