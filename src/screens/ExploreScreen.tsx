@@ -6,12 +6,14 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useGetSearchQuery } from "../store/features/search/searchSlice";
 import SearchDeck from "../store/features/search/SearchDeck";
 import SearchUser from "../store/features/search/SearchUser";
+import useDebounce from "../hooks/useDebounce";
 
 const ExploreScreen = () => {
   const [query, setQuery] = useState("");
+  const debouncedQuery = useDebounce(query, 200);
   const { data, isLoading, error } = useGetSearchQuery(
-    { query },
-    { skip: query.trim() === "" }
+    { query: debouncedQuery },
+    { skip: debouncedQuery.trim() === "" }
   );
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
@@ -24,14 +26,14 @@ const ExploreScreen = () => {
             style={{ fontSize: 18 }}
             autoCapitalize="none"
             className="border p-3 rounded-md pl-[42px]"
-            onSubmitEditing={({ nativeEvent }) => setQuery(nativeEvent.text)}
+            onChangeText={(text) => setQuery(text)}
           />
         </View>
         <ScrollView className="h-full">
-          {data?.decks.length === 0 && data.users.length === 0 && (
+          {debouncedQuery.trim() !== "" && data?.decks.length === 0 && data.users.length === 0 && (
             <Text>No results found</Text>
           )}
-          {data?.decks.length !== undefined && data.decks.length > 0 && (
+          {debouncedQuery.trim() !== "" && data?.decks.length !== undefined && data.decks.length > 0 && (
             <View>
               <Text className="text-lg">Decks</Text>
               <View style={{ rowGap: 5 }}>
@@ -41,7 +43,7 @@ const ExploreScreen = () => {
               </View>
             </View>
           )}
-          {data?.users.length !== undefined && data.users.length > 0 && (
+          {debouncedQuery.trim() !== "" && data?.users.length !== undefined && data.users.length > 0 && (
             <View>
               <Text className="text-lg">Users</Text>
               <View style={{ rowGap: 5 }}>
