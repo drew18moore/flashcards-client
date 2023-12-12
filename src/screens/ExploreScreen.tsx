@@ -28,22 +28,26 @@ const ExploreScreen = () => {
           />
         </View>
         <ScrollView className="h-full">
-          <View>
-            <Text className="text-lg">Decks</Text>
-            <View style={{ rowGap: 5 }}>
-              {data?.decks.map((deck) => (
-                <SearchDeck key={deck.id} {...deck} />
-              ))}
+          {data?.decks && (
+            <View>
+              <Text className="text-lg">Decks</Text>
+              <View style={{ rowGap: 5 }}>
+                {data?.decks.map((deck) => (
+                  <SearchDeck key={deck.id} {...deck} />
+                ))}
+              </View>
             </View>
-          </View>
-          <View>
-            <Text className="text-lg">Users</Text>
-            <View style={{ rowGap: 5 }}>
-              {data?.users.map((user) => (
-                <SearchUser key={user.id} {...user} />
-              ))}
+          )}
+          {data?.users && (
+            <View>
+              <Text className="text-lg">Users</Text>
+              <View style={{ rowGap: 5 }}>
+                {data?.users.map((user) => (
+                  <SearchUser key={user.id} {...user} />
+                ))}
+              </View>
             </View>
-          </View>
+          )}
         </ScrollView>
       </View>
     </SafeAreaView>
