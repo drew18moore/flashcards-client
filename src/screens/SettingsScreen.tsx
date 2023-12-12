@@ -9,6 +9,7 @@ import * as SecureStorage from "expo-secure-store";
 import { useEditUserMutation } from "../store/features/user/userApiSlice";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Platform } from "react-native";
+import { apiSlice } from "../store/api/apiSlice";
 
 const SettingsScreen = () => {
   const user = useSelector(selectCurrentUser);
@@ -22,6 +23,7 @@ const SettingsScreen = () => {
   const onLogout = async () => {
     dispatch(logout());
     await SecureStorage.deleteItemAsync("flashcards-jwt");
+    dispatch(apiSlice.util.resetApiState());
   };
 
   const saveProfile = async () => {
