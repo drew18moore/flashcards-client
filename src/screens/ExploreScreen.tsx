@@ -30,7 +30,7 @@ const ExploreScreen = () => {
         <ScrollView className="h-full">
           <View>
             <Text className="text-lg">Decks</Text>
-            <View>
+            <View style={{ rowGap: 5 }}>
               {data?.decks.map((deck) => (
                 <SearchDeck key={deck.id} {...deck} />
               ))}
@@ -38,13 +38,12 @@ const ExploreScreen = () => {
           </View>
           <View>
             <Text className="text-lg">Users</Text>
-            <View>
+            <View style={{ rowGap: 5 }}>
               {data?.users.map((user) => (
                 <SearchUser key={user.id} {...user} />
               ))}
             </View>
           </View>
-          <Text>{JSON.stringify(data)}</Text>
         </ScrollView>
       </View>
     </SafeAreaView>

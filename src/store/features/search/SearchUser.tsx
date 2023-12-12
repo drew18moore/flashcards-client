@@ -3,8 +3,8 @@ import React from 'react'
 
 const SearchUser = ({ id, username, displayName, createdAt }: User) => {
   return (
-    <TouchableOpacity className='border'>
-      <Text>SearchUser</Text>
+    <TouchableOpacity className='border p-5 rounded-md'>
+      <Text className='font-bold'>{displayName}</Text>
     </TouchableOpacity>
   )
 }
