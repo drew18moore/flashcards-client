@@ -1,4 +1,4 @@
-import { View, Text, Platform, ScrollView } from "react-native";
+import { View, Text, Platform, ScrollView, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native";
@@ -25,9 +25,13 @@ const ExploreScreen = () => {
           <TextInput
             style={{ fontSize: 18 }}
             autoCapitalize="none"
-            className="border p-3 rounded-md pl-[42px]"
+            className="border p-3 rounded-md px-[42px]"
+            value={query}
             onChangeText={(text) => setQuery(text)}
           />
+          <TouchableOpacity onPress={() => setQuery("")} className={`absolute top-0 bottom-0 right-0 aspect-square items-center justify-center ${query.trim() === "" ? "hidden" : ""}`}>
+            <MaterialCommunityIcons name="close" size={30} />
+          </TouchableOpacity>
         </View>
         <ScrollView className="h-full">
           {debouncedQuery.trim() !== "" && data?.decks.length === 0 && data.users.length === 0 && (
