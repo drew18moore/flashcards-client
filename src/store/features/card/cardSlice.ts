@@ -21,7 +21,10 @@ export const cardApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: { ...credentials },
       }),
-      invalidatesTags: [{ type: "Card", id: "LIST" }],
+      invalidatesTags: [
+        { type: "Card", id: "LIST" },
+        { type: "Deck", id: "LIST" },
+      ],
     }),
     editCard: builder.mutation<Card, EditCardRequest>({
       query: ({ cardId, frontText, backText }) => ({
@@ -36,7 +39,10 @@ export const cardApiSlice = apiSlice.injectEndpoints({
         url: `/card/${cardId}`,
         method: "DELETE",
       }),
-      invalidatesTags: [{ type: "Card", id: "LIST" }]
+      invalidatesTags: [
+        { type: "Card", id: "LIST" },
+        { type: "Deck", id: "LIST" },
+      ],
     }),
   }),
 });
@@ -45,5 +51,5 @@ export const {
   useGetAllCardsInDeckQuery,
   useNewCardMutation,
   useEditCardMutation,
-  useDeleteCardMutation
+  useDeleteCardMutation,
 } = cardApiSlice;
