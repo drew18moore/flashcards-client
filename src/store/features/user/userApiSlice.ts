@@ -9,7 +9,13 @@ export const userApiSlice = apiSlice.injectEndpoints({
         body: { displayName, username },
       }),
     }),
+    getUserProfile: builder.query<User, { userId: number }>({
+      query: ({ userId }) => ({
+        url: `/user/${userId}`,
+        method: "GET"
+      }),
+    }),
   }),
 });
 
-export const { useEditUserMutation } = userApiSlice;
+export const { useEditUserMutation, useGetUserProfileQuery } = userApiSlice;

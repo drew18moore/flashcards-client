@@ -7,6 +7,8 @@ import { useGetSearchQuery } from "../store/features/search/searchSlice";
 import SearchDeck from "../store/features/search/SearchDeck";
 import SearchUser from "../store/features/search/SearchUser";
 import useDebounce from "../hooks/useDebounce";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../store/features/auth/authSlice";
 
 const ExploreScreen = () => {
   const [query, setQuery] = useState("");
@@ -15,6 +17,8 @@ const ExploreScreen = () => {
     { query: debouncedQuery },
     { skip: debouncedQuery.trim() === "" }
   );
+  const currUser = useSelector(selectCurrentUser);
+
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View className="px-4">
@@ -52,7 +56,7 @@ const ExploreScreen = () => {
               <Text className="text-lg">Users</Text>
               <View style={{ rowGap: 5 }}>
                 {data?.users.map((user) => (
-                  <SearchUser key={user.id} {...user} />
+                  <SearchUser key={user.id} {...user} isCurrentUser={user.id === currUser?.id} />
                 ))}
               </View>
             </View>
