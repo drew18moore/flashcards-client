@@ -25,17 +25,17 @@ const FlashcardsSettingsScreen = () => {
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="self-start mx-2 p-2 absolute z-10 left-0"
+          className="self-start mx-3 p-2 absolute z-10 left-0"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
         <Text className="font-bold text-center p-3">Options</Text>
-        <TouchableOpacity onPress={save} className="self-start mx-2 p-2 absolute z-10 right-0">
+        <TouchableOpacity onPress={save} className="self-start mx-3 p-2 absolute z-10 right-0">
           <MaterialCommunityIcons name="check" size={25} color="#2563EB" />
         </TouchableOpacity>
       </View>
 
-      <View className="p-5 space-y-1">
+      <View className="p-6 space-y-1">
         <Text className="text-lg font-bold">CARD ORIENTATION</Text>
         <View className="flex-row space-x-2">
           <Pressable

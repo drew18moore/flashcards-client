@@ -21,12 +21,12 @@ export default function DecksScreen() {
 
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
-      <View className="absolute z-10 bottom-14 right-3">
+      <View className="absolute z-10 bottom-16 right-6">
         <NewDeckButton onPress={() => navigation.navigate("new-deck")} />
       </View>
-      <Text className="text-lg font-bold px-4 py-2">Decks</Text>
+      <Text className="text-lg font-bold px-6 py-2">Decks</Text>
       <ScrollView
-        className="h-full px-4"
+        className="h-full px-6"
         contentContainerStyle={{ rowGap: 5, paddingBottom: 60 }}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />

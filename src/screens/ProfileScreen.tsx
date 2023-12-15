@@ -18,7 +18,7 @@ const ProfileScreen = () => {
 
   return (
     <SafeAreaView className={`${Platform.OS === "android" ? "pt-6" : ""}`}>
-      <View className="px-4 flex-row">
+      <View className="px-6 flex-row">
         <View className="space-y-2 flex-1">
           <Text className="font-bold text-xl">{user?.displayName}</Text>
           <Text>{user?.username}</Text>

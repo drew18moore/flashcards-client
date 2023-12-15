@@ -50,12 +50,12 @@ const TestSubmitScreen = () => {
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="self-start mx-2 p-2 "
+          className="self-start mx-3 p-2"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
       </View>
-      <View className="px-5">
+      <View className="p-6">
         <View>
           <Text className="text-lg font-bold">Your results</Text>
           <View className="flex-row items-center space-x-4 py-4">

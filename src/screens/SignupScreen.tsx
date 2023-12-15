@@ -62,7 +62,7 @@ const SignupScreen = () => {
       >
         <MaterialCommunityIcons name="arrow-left" size={25} />
       </TouchableOpacity>
-      <View className="mx-5 space-y-2 mt-20">
+      <View className="mx-6 space-y-2 mt-20">
         <Text>SIGN UP WITH A USERNAME</Text>
         {error && (
           <Text

@@ -61,7 +61,7 @@ const TestScreen = () => {
       <View className="relative">
         <TouchableOpacity
           onPress={() => setShowModal(true)}
-          className="self-start mx-2 p-2 absolute z-10 left-0"
+          className="self-start mx-3 p-2 absolute z-10 left-0"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
@@ -70,7 +70,7 @@ const TestScreen = () => {
         </Text>
       </View>
 
-      <View className="p-5 mt-10 flex-1 space-y-2">
+      <View className="p-6 mt-10 flex-1 space-y-2">
         <View className="flex-1">{currentQuestion()}</View>
         <View className="flex-row justify-between space-x-4">
           <TouchableOpacity

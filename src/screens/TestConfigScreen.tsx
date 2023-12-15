@@ -68,17 +68,17 @@ const TestConfigScreen = () => {
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="self-start mx-2 p-2 absolute z-10 left-0"
+          className="self-start mx-3 p-2 absolute z-10 left-0"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
       </View>
 
-      <View className="p-5 mt-10">
+      <View className="p-6 mt-10">
         <Text className="text-lg font-bold">Set up your test</Text>
       </View>
 
-      <View className="p-5 space-y-4">
+      <View className="p-6 space-y-4">
         <View className="flex-row justify-between items-center">
           <View className="flex-row items-center space-x-1">
             <Text className="font-bold">Question Count</Text>

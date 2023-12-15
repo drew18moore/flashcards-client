@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
 
   return (
     <SafeAreaView className={`flex-1 ${Platform.OS === "android" ? "pt-6" : ""}`}>
-      <View className="px-8 py-2 justify-between flex-1">
+      <View className="px-6 py-2 justify-between flex-1">
         <Text className="text-2xl font-bold">Flashcards</Text>
         <View className="space-y-4 mb-4">
           <TouchableOpacity onPress={() => navigation.navigate("signup")} className="border bg-blue-600 border-blue-600 p-4 rounded-md">

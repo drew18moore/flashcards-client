@@ -39,7 +39,7 @@ const EditCardScreen = () => {
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="self-start mx-2 p-2 absolute z-10 left-0"
+          className="self-start mx-3 p-2 absolute z-10 left-0"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
@@ -47,7 +47,7 @@ const EditCardScreen = () => {
         <TouchableOpacity
           onPress={onSubmit}
           disabled={frontText.trim() === "" || backText.trim() === ""}
-          className="self-start mx-2 p-2 absolute z-10 right-0"
+          className="self-start mx-3 p-2 absolute z-10 right-0"
         >
           <MaterialCommunityIcons
             name="check"
@@ -56,7 +56,7 @@ const EditCardScreen = () => {
           />
         </TouchableOpacity>
       </View>
-      <View className="p-5 space-y-4">
+      <View className="p-6 space-y-4">
         <View>
           <Text className="text-lg font-bold">FRONT TEXT</Text>
           <TextInput

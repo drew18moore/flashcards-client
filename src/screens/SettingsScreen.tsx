@@ -47,18 +47,18 @@ const SettingsScreen = () => {
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="self-start mx-2 p-2 absolute z-10 left-0"
+          className="self-start mx-3 p-2 absolute z-10 left-0"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
         <Text className="font-bold text-center p-3">Settings</Text>
-        <TouchableOpacity className="self-start mx-2 p-2 absolute z-10 right-0">
+        <TouchableOpacity className="self-start mx-3 p-2 absolute z-10 right-0">
           <Text onPress={saveProfile} className="font-bold p-1 text-blue-600">
             SAVE
           </Text>
         </TouchableOpacity>
       </View>
-      <View className="p-5 space-y-2">
+      <View className="p-6 space-y-2">
         <View>
           <Text className="text-lg font-bold">DISPLAY NAME</Text>
           <TextInput
@@ -83,7 +83,7 @@ const SettingsScreen = () => {
         </View>
       </View>
       <TouchableOpacity
-        className="mx-5 p-2 items-center border rounded-md"
+        className="mx-6 p-2 items-center border rounded-md"
         onPress={onLogout}
       >
         <Text className="font-bold p-1 text-blue-600">LOG OUT</Text>

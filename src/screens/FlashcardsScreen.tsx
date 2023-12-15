@@ -37,14 +37,14 @@ const FlashcardsScreen = () => {
       <View>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          className="self-start mx-2 p-2 absolute z-10 left-0"
+          className="self-start mx-3 p-2 absolute z-10 left-0"
         >
           <MaterialCommunityIcons name="close" size={25} />
         </TouchableOpacity>
         <Text className="font-bold text-center p-3">
           {currentIndex + 1}/{cards?.length}
         </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("flashcards-settings")} className="self-start mx-2 p-2 absolute z-10 right-0">
+        <TouchableOpacity onPress={() => navigation.navigate("flashcards-settings")} className="self-start mx-3 p-2 absolute z-10 right-0">
           <MaterialCommunityIcons name="cog-outline" size={25} />
         </TouchableOpacity>
       </View>

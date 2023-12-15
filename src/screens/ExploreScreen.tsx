@@ -21,7 +21,7 @@ const ExploreScreen = () => {
 
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
-      <View className="px-4">
+      <View className="px-6">
         <View className="relative">
           <View className="absolute top-0 bottom-0 aspect-square items-center justify-center">
             <MaterialCommunityIcons name="magnify" size={30} />
