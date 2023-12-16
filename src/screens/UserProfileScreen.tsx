@@ -19,6 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useGetUserProfileQuery } from "../store/features/user/userApiSlice";
 import { useGetAllPublicUserDecksQuery } from "../store/features/deck/deckSlice";
 import Deck from "../store/features/deck/Deck";
+import SearchDeck from "../store/features/search/SearchDeck";
 
 const UserProfileScreen = () => {
   const {
@@ -61,14 +62,9 @@ const UserProfileScreen = () => {
         <Text className="text-lg font-bold mt-6">Decks</Text>
         <View className="flex-1">
           {decks?.map((deck) => (
-            <Deck
+            <SearchDeck
               key={deck.id}
-              id={deck.id}
-              userId={deck.userId}
-              name={deck.name}
-              isPrivate={deck.isPrivate}
-              createdAt={deck.createdAt}
-              numCards={deck.numCards}
+              {...deck}
             />
           ))}
         </View>
