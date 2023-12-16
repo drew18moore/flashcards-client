@@ -51,6 +51,13 @@ export const deckApiSlice = apiSlice.injectEndpoints({
         params: { numQuestions, trueFalse, multipleChoice, written }
       }),
     }),
+    getAllPublicUserDecks: builder.query<Deck[], { userId: number }>({
+      query: ({ userId }) => ({
+        url: "/deck",
+        method: "GET",
+        params: { userId }
+      })
+    })
   }),
 });
 
@@ -59,5 +66,6 @@ export const {
   useNewDeckMutation,
   useEditDeckMutation,
   useDeleteDeckMutation,
-  useGetTestQuestionsMutation
+  useGetTestQuestionsMutation,
+  useGetAllPublicUserDecksQuery
 } = deckApiSlice;
