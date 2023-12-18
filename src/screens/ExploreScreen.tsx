@@ -22,19 +22,19 @@ const ExploreScreen = () => {
   return (
     <SafeAreaView className={Platform.OS === "android" ? "pt-6" : ""}>
       <View className="px-6">
-        <View className="relative">
+        <View className="relative bg-white rounded-full">
           <View className="absolute top-0 bottom-0 aspect-square items-center justify-center">
-            <MaterialCommunityIcons name="magnify" size={30} />
+            <MaterialCommunityIcons name="magnify" size={30} color="gray" />
           </View>
           <TextInput
             style={{ fontSize: 18 }}
             autoCapitalize="none"
-            className="border p-3 rounded-md px-[42px]"
+            className="border-2 border-gray-300 p-3 rounded-full px-[42px]"
             value={query}
             onChangeText={(text) => setQuery(text)}
           />
           <TouchableOpacity onPress={() => setQuery("")} className={`absolute top-0 bottom-0 right-0 aspect-square items-center justify-center ${query.trim() === "" ? "hidden" : ""}`}>
-            <MaterialCommunityIcons name="close" size={30} />
+            <MaterialCommunityIcons name="close" size={30} color="gray" />
           </TouchableOpacity>
         </View>
         <ScrollView className="h-full">
