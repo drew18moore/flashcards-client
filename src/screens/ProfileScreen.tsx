@@ -21,7 +21,7 @@ const ProfileScreen = () => {
       <View className="px-6 flex-row">
         <View className="space-y-2 flex-1">
           <Text className="font-bold text-xl">{user?.displayName}</Text>
-          <Text>{user?.username}</Text>
+          <Text>@{user?.username}</Text>
           <Text>Joined {formattedDate}</Text>
         </View>
         <View>

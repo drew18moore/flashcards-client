@@ -10,8 +10,9 @@ const SearchUser = ({ id, username, displayName, createdAt, isCurrentUser }: Use
     isCurrentUser ? navigation.navigate("Profile") : navigation.navigate("user-profile", { id })
   }
   return (
-    <TouchableOpacity onPress={onPress} className='border p-5 rounded-md'>
+    <TouchableOpacity onPress={onPress} className='border-2 border-gray-300 p-5 rounded-md bg-white'>
       <Text className='font-bold'>{displayName}</Text>
+      <Text className='text-gray-600'>@{username}</Text>
     </TouchableOpacity>
   )
 }

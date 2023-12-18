@@ -56,7 +56,7 @@ const UserProfileScreen = () => {
       <ScrollView className="px-6 mt-2 h-full">
         <View className="space-y-2">
           <Text className="font-bold text-xl">{user?.displayName}</Text>
-          <Text>{user?.username}</Text>
+          <Text>@{user?.username}</Text>
           <Text>Joined {formattedDate} </Text>
         </View>
         <Text className="text-lg font-bold mt-6">Decks</Text>
