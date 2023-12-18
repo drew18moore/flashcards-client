@@ -13,7 +13,7 @@ const Deck = ({ id, userId, name, isPrivate, createdAt, numCards }: Deck) => {
     >
       <Text className="font-bold">{name}</Text>
       <View className="bg-blue-100 self-start rounded-full px-2">
-        <Text className="">
+        <Text>
           {numCards === 1 ? `${numCards} card` : `${numCards} cards`}
         </Text>
       </View>
